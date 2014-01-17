@@ -50,7 +50,7 @@ return CMap::mergeArray(
 //		),
 		// uncomment the following to use a MySQL database
 		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=persogenics',
+			'connectionString' => 'mysql:host=localhost;dbname=kiddreamer',
 			'emulatePrepare' => true,
 			'username' => 'root',
 			'password' => '',
