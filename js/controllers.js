@@ -390,7 +390,6 @@ myApp.controller(
         }
         
         $scope.navigate = function(state) {
-            console.log(state);
             $state.transitionTo(state);
         }
         
