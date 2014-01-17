@@ -40,6 +40,11 @@
         <input type="text" data-ng-model="plan.prdtosell" ng-required="plan.type == 'product'" name="prdtosell"/>
         <span class="required" ng-show="businessplan.prdtosell.$error.required && (businessplan.prdtosell.$dirty || submitted)">This field is required</span>
 
+        <p>Who needs this product?</p>
+        <input type="text" data-ng-model="plan.customer" ng-required="plan.type == 'service'" name="customer"/>
+        <span class="required" ng-show="businessplan.customer.$error.required && (businessplan.customer.$dirty || submitted)">This field is required</span>
+
+
         <p>How much does the product cost?</p>
         <input type="text" data-ng-model="plan.cost" ng-required="plan.type == 'product'" name="cost"/>
         <span class="required" ng-show="businessplan.cost.$error.required && (businessplan.cost.$dirty || submitted)">This field is required</span>

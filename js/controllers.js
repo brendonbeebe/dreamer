@@ -108,6 +108,23 @@ myApp.controller(
         }
         $scope.finishplan = function(){
             $scope.submitted = true;
+//            $existingPlan->activities = $data['activities'];
+//            $existingPlan->customer= $data['customer'];
+//            $existingPlan->summary= $data['summary'];
+//            $existingPlan->value= $data['value'];
+            var summary = $scope.plan.description + " " + $scope.plan.whystart;
+            var activities = $scope.plan.servicedesc  +" "+ $scope.plan.prdtosell;
+            var customer = $scope.plan.customer;
+            var value = $scope.plan.prdtosell;
+
+            $http.post('yii/BusinessPlan/SaveBusinessPlan',{
+                "activities":activities,
+                "customer":customer,
+                "summary":summary,
+                "value":value
+            }).success(function(){
+
+                });
         };
 
 

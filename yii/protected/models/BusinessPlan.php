@@ -8,6 +8,9 @@
  * @property integer $user_id
  * @property string $summary
  * @property string $type
+ * @property string $value
+ * @property string $customer
+ * @property string $activities
  *
  * The followings are the available model relations:
  * @property BusinessItems[] $businessItems
@@ -41,11 +44,13 @@ class BusinessPlan extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('id, user_id', 'numerical', 'integerOnly'=>true),
+			array('value, customer, activities', 'required'),
+			array('user_id', 'numerical', 'integerOnly'=>true),
 			array('summary, type', 'length', 'max'=>50),
+			array('value, customer, activities', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, summary, type', 'safe', 'on'=>'search'),
+			array('id, user_id, summary, type, value, customer, activities', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -72,6 +77,9 @@ class BusinessPlan extends CActiveRecord
 			'user_id' => 'User',
 			'summary' => 'Summary',
 			'type' => 'Type',
+			'value' => 'Value',
+			'customer' => 'Customer',
+			'activities' => 'Activities',
 		);
 	}
 
@@ -90,6 +98,9 @@ class BusinessPlan extends CActiveRecord
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('summary',$this->summary,true);
 		$criteria->compare('type',$this->type,true);
+		$criteria->compare('value',$this->value,true);
+		$criteria->compare('customer',$this->customer,true);
+		$criteria->compare('activities',$this->activities,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
