@@ -155,7 +155,7 @@ myApp.controller(
 
 myApp.controller(
     'QuizController',
-    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http,$state){
         $scope.init = function(){
 
         }
@@ -191,6 +191,8 @@ myApp.controller(
                         }
                     }).success(function(){
                             userFactory.getUserInfo(false);
+
+                            $state.transitionTo("lessons");
                         });
                 }
             }

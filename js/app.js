@@ -102,7 +102,34 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 auth:true,
                 views: {
                     "main_view": {
-                        templateUrl: "views/quiz.html",
+                        templateUrl: "views/lessons.html",
+                        controller: "LessonsController"
+                    }
+                }
+            }).state('quiz.second', {
+                url: "/second", // root route
+                auth:true,
+                views: {
+                    "lesson_view": {
+                        templateUrl: "views/quiz/quiz2.html",
+                        controller: "QuizController"
+                    }
+                }
+            }).state('quiz.third', {
+                url: "/third", // root route
+                auth:true,
+                views: {
+                    "lesson_view": {
+                        templateUrl: "views/quiz/quiz3.html",
+                        controller: "QuizController"
+                    }
+                }
+            }).state('quiz.first', {
+                url: "/first", // root route
+                auth:true,
+                views: {
+                    "lesson_view": {
+                        templateUrl: "views/quiz/quiz1.html",
                         controller: "QuizController"
                     }
                 }

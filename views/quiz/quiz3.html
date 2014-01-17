@@ -1,0 +1,24 @@
+<form name="quiz">
+    <span class="required" >{{error}}</span>
+
+
+    <p>Here is a question about the course above</p>
+    <label>Answer <input type="radio" name="question1" ng-model="quiz.question1" value="1"></label>
+    <label>Answer <input type="radio" name="question1" ng-model="quiz.question1" value="2"></label>
+    <label>Answer <input type="radio" name="question1" ng-model="quiz.question1" value="3"></label>
+    <label>Answer <input type="radio" name="question1" ng-model="quiz.question1" value="4"></label>
+
+    <p>Here is a question about the course above</p>
+    <label>Answer <input type="radio" name="question2" ng-model="quiz.question2" value="1"></label>
+    <label>Answer <input type="radio" name="question2" ng-model="quiz.question2" value="2"></label>
+    <label>Answer <input type="radio" name="question2" ng-model="quiz.question2" value="3"></label>
+    <label>Answer <input type="radio" name="question2" ng-model="quiz.question2" value="4"></label>
+
+    <p>Here is a question about the course above</p>
+    <label>Answer <input type="radio" name="question3" ng-model="quiz.question3" value="1"></label>
+    <label>Answer <input type="radio" name="question3" ng-model="quiz.question3" value="2"></label>
+    <label>Answer <input type="radio" name="question3" ng-model="quiz.question3" value="3"></label>
+    <label>Answer <input type="radio" name="question3" ng-model="quiz.question3" value="4"></label>
+
+    <button ng-click="submit(3)">Finish Assessment</button>
+</form>
