@@ -1,36 +1,257 @@
-/* app css stylesheet */
+/* dreamer css stylesheet */
 
-.menu {
-  list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
-}
 
-.menu:before {
-  content: "[";
-}
-
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
+.nav-bar {
+  border: 0 none;
+  background-image: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  top: 0;
+  position: fixed;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+  margin: 0;
   padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  border: 0 none;
+  background: rgba(255,255,255,0.98);
+  -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  -moz-box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+  padding-left: 0;
+  padding-right: 0;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border-width: 0 0 1px;
+  min-height: 40px;
 }
-input.ng-dirty.ng-invalid{
-    border-color: #e9322d !important;
-}
-.ng-disabled{
 
+.container {
+  width: 1170px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+ul.nav-left {
+  margin: 0;
+  position: relative;
+  left: 0;
+  display: block;
+  float: left;
+  list-style: none;
+}
+
+ul.nav-right {
+  margin: 0;
+  position: relative;
+  left: 0;
+  display: block;
+  float: right;
+  list-style: none;
+}
+
+ul.nav-left li, ul.nav-right li {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+  float: left;
+  line-height: 100%;
+  display: list-item;
+  text-align: -webkit-match-parent;
+}
+
+ul.nav-left li a, ul.nav-right li a {
+  line-height: 80px;
+  padding: 0 15px;
+  text-shadow: none;
+  color: #afafaf;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  float: none;
+  text-decoration: none;
+  display: block;
+  white-space: nowrap;
+}
+
+ul.nav-left li a.brand {
+  border: 1px solid #eeeff0;
+  border-width: 0 1px;
+  line-height: 80px;
+  padding: 0 30px;
+  text-shadow: none;
+  color: #afafaf;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  background-image: url("../img/ys-logo.png");
+  background-size: 40px 30px;
+  width: 21px;
+  height: 80px;
+  margin: 0 20px 0 0;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+span.nav-btn {
+  background-color: #63c6ae;
+  color: #fff;
+  padding: 8px 16px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+.cover-photo {
+  background: #45494d url(http://i.huffpost.com/gen/981773/thumbs/o-KID-ENTREPRENEURS-facebook.jpg) no-repeat center center;
+  background-size: cover;
+  -webkit-box-shadow: inset 0 -1px 10px rgba(0,0,0,0.6);
+  -moz-box-shadow: inset 0 -1px 10px rgba(0,0,0,0.6);
+  box-shadow: inset 0 -1px 10px rgba(0,0,0,0.6);
+  width: 100%;
+  min-height: 600px;
+  padding: 0px;
+  margin: 0px;
+}
+
+.cover-photo h1 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  color: #fff;
+  font-size: 300%;
+  width:100%;
+  text-align: center;
+  padding-top:370px;
+  text-shadow: 0px 1px 1px rgba(0,0,0,0.3);
+  margin-bottom: 30px;
+}
+
+.btn-outline {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-color: rgba(255,255,255,0.5);
+  padding: 14px 24px 15px 24px;
+  background: none;
+  border: 2px solid #bbb;
+  margin: 10px auto;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.btn-start {
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  -moz-box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  border-color: rgba(255,255,255,0.5);
+  padding: 14px 24px 15px 24px;
+  background-color: #63c6ae;
+  border: 2px solid #bbb;
+  margin: 10px auto;
+  border-radius: 5px;
+  text-decoration: none;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
+.cover-box {
+  width: 100%;
+  height: auto;
+  padding: 90px 0px;
+  clear: both;
+  text-align: center;
+}
+
+.cover-box .welcome {
+  text-shadow: none;
+  color: #afafaf;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  float: none;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+}
+
+hr.welcome-hr {
+  width: 350px !important;
+  display: block;
+}
+
+img.welcome-logo {
+  margin: 20px 0px;
+}
+
+p.non-profit {
+  color: #45494d;
+  font-size: 150%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  width: 60%;
+  margin: 20px auto 0px auto;
+  text-align: center;
+}
+
+.how {
+  background: #63c6ae;
+}
+
+.how .thirds {
+  width: 33%;
+  float: left;
+  padding: 20px;
+}
+
+.what {
+  background: #63c6ae;
+}
+
+.what p {
+  color: #45494d;
+  font-size: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  width: 70%;
+  margin: 20px auto;
+  text-align: left;
 }
