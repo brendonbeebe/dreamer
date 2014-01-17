@@ -537,7 +537,8 @@ class UserController extends ERestController
                 "address"=>$userModel->address,
                 "city"=>$userModel->city,
                 "state"=>$userModel->state,
-                "zip"=>$userModel->zip
+                "zip"=>$userModel->zip,
+                "lessonsComplete"=>$userModel->lessonsCompletes
             );
 
 
@@ -617,7 +618,6 @@ class UserController extends ERestController
             $userModel->email =$data['email'];
             $userModel->first_name =$data['first_name'];
             $userModel->last_name =$data['last_name'];
-            $userModel->organization =$data['organization'];
             $userModel->phone =$data['phone'];
             $userModel->phone2 =$data['phone2'];
             $userModel->address =$data['address'];
@@ -678,122 +678,6 @@ class UserController extends ERestController
                 'message'=>$message
             ));
         }
-    }
-    public function actionRegisterGroupUser(){
-        Yii::app()->user->logout();
-        $post = file_get_contents("php://input");
-
-        //decode json post input as php array:
-        $data = CJSON::decode($post, true);
-
-        $group = Groups::model()->findByPk($data['group_id']);
-
-        //A uniqid of -1 means registration is turned off and noone should be registering
-        if($group->uniqid == -1)
-            return;
-
-
-        $newUser = new User;
-        $newUser->first_name = $data['first_name'];
-        $newUser->last_name= $data['last_name'];
-        $newUser->email= $data['email'];
-        $newUser->organization = $group->org_id;
-        $newUser->password= Yii::app()->apiAuth->encryptPassword($data['email'], $data['password']);
-        if(!$newUser->save()){
-            $this->ThrowError($newUser->getErrors());
-
-        }
-        $newUser->assignToGroupId($group->id);
-        $am = Yii::app()->getAuthManager();
-        $am->assign("Employee", $newUser->id);
-    }
-
-    public function actionRegisterOrganizationUser(){
-        Yii::app()->user->logout();
-        $post = file_get_contents("php://input");
-
-        //decode json post input as php array:
-        $data = CJSON::decode($post, true);
-
-
-        //Check that organization id is unique
-        $newOrganization = Organization::model()->findByAttributes(array("unique_org_id"=>$data['unique_org_id']));
-        //$newOrganization = Organization::model()->findAllByAttributes(array("unique_org_id"=>$data['unique_org_id']));
-
-        if(!empty($newOrganization))
-            $this->ThrowError(array("organization_id"=>array('Duplicate organization id, pick another.')));
-
-        $newOrganization = new Organization;
-        $newOrganization->name = $data['org_name'];
-        $newOrganization->unique_org_id = $data['unique_org_id'];
-        $newOrganization->phone = $data['phone'];
-        $newOrganization->reference = $data['reference'];
-        $newOrganization->size = $data['size'];
-        $newOrganization->save();
-        $newOrganization->createDefaults();
-
-
-        $newUser = new User;
-        $newUser->first_name = $data['first_name'];
-        $newUser->last_name= $data['last_name'];
-        $newUser->email= $data['email'];
-        $newUser->organization = $newOrganization->id;
-        $newUser->password= Yii::app()->apiAuth->encryptPassword($data['email'], $data['password']);
-        $success = true;
-
-        if($newUser->save()){
-            //$newUser->addToCRM();
-
-            //Subscribe to default
-            $newUser->subscribe(1,date( 'Y-m-d',time()+86400*14) );
-            $newUser->subscribe(2,date( 'Y-m-d',time()+86400*14));
-            $am = Yii::app()->getAuthManager();
-            $am->assign("Company Admin", $newUser->id);
-
-
-            $mandrill = new Mandrill();
-            $template_name = "new-organization-register";
-            $template_content = array();
-            $template_content[] = array(
-                "name"=>"first_name",
-                "content"=>$newUser->first_name
-            );
-            $template_content[] = array(
-                "name"=>"email",
-                "content"=>$newUser->email
-            );
-            $template_content[] = array(
-                "name"=>"org_id",
-                "content"=>$newUser->organizationRelation->unique_org_id
-            );
-            $to = array();
-            $to [] = array(
-                "email"=>$newUser->email,
-                "name"=>$newUser->first_name . " ".$newUser->last_name
-            );
-            $message = array(
-                "to"=> $to
-            );
-
-
-            $mandrill->messages->sendTemplate($template_name, $template_content, $message);
-
-
-
-            $message = "User was created.";
-        } else {
-            $this->ThrowError($newUser->getErrors());
-
-            $success = false;
-            $errors = $newUser->getErrors();
-            $message = $errors;
-        }
-
-
-        $this->renderJson(array(
-            'success'=>$success,
-            'message'=>$message
-        ));
     }
 
     public function actionRegisterUser(){
@@ -903,82 +787,6 @@ class UserController extends ERestController
 			Yii::app()->end();
 		}
 	}
-    /* Column based filter, what columns can a user see? */
-    public function addSecurityFilters(){
-        $userModel = User::model()->find("id = :id",array(":id"=>Yii::app()->user->getId()));
-        if(!empty($userModel)){
-            $this->restFilter = '[{"property": "organization", "value" : '.$userModel->organization.', "operator": "="}]';
-        } else {
-             $this->restFilter = '[{"property": "organization", "value" : -1, "operator": "="}]';
-        }
-        return $this->restFilter;
-    }
-    public function actionGetBilling() {
-
-    }
-
-    private function getPlanID($retain,$hire){
-        if($retain == 0){
-            if($hire==1)
-                $plan = 'hire_monthly_tier1';
-            if($hire==2)
-                $plan = 'hire_monthly_tier2';
-            if($hire==3)
-                $plan = 'hire_monthly_tier3';
-        } else if($hire == 0){
-            if($retain==1)
-                $plan = 'retain_monthly_tier1';
-            if($retain==2)
-                $plan = 'retain_monthly_tier2';
-            if($retain==3)
-                $plan = 'retain_monthly_tier3';
-        } else if($hire >0 && $hire <=3 && $retain > 0 && $retain<=3){
-            $plan = 'c_retain'.$retain.'_hire'.$hire;
-        } else {
-            return false;
-        }
-        return $plan;
-    }
-    public function actionStartSubscription() {
-        $retain = Yii::app()->request->getParam('retain','');
-        $hire = Yii::app()->request->getParam('hire','');
-        $stripeToken = Yii::app()->request->getParam('stripeToken','');
-        $plan = $this->getPlanID($retain,$hire);
-
-        $user_id = Yii::app()->user->getId();
-        $user_model = User::model()->find("id = :user_id",array(":user_id"=>$user_id));
-
-        if ($user_model->customer_id == 0) {
-
-            Stripe::setApiKey(Yii::app()->params['stripeToken']);
-
-
-            /*
-             * c_retain1_hire1
-             *
-             * retain_monthly_tier1
-             *
-             * hire_monthly_tier1
-             */
-            $customer = Stripe_Customer::create(array(
-                    "plan" => $plan,
-                    "email" => $user_model->email,
-                    "card" => $stripeToken)
-            );
-            $values = $customer->getValues();
-            $user_model->customer_id = $values['id'];
-            $user_model->save();
-
-            if(!empty($retain)){
-                $user_model->subscribe(1,date( 'Y-m-d',time()+86400*365),$retain);
-            }
-            if(!empty($hire)){
-                $user_model->subscribe(2,date( 'Y-m-d',time()+86400*365),$hire);
-            }
-
-        }
-
-    }
 
 
 
