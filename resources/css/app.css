@@ -380,3 +380,51 @@ p.non-profit {
   box-sizing:border-box;
   margin: 0px auto;
 }
+
+.edit-info {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.profile-lesson {
+  float:right;
+  padding: 0px;
+  height:auto;
+}
+
+.lesson-title {
+  height: 100px;
+  float:left;
+  font-weight: 800;
+  color: #808080;
+  font-size: 100%;
+}
+
+.profile-lesson-tile {
+  height: 100px;
+  width: 100px;
+  background: #fff;
+  float: left;
+  margin: 0px 10px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.profile-lesson-tile.complete {
+  background-color: #f16521;
+}
+
+.profile-lesson-tile.current {
+  background-color: #63c6ae;
+}
+
+.profile-lesson-tile.incomplete {
+  background-color: #ccc;
+}
+
+.profile-lesson-tile span {
+  line-height: 100px;
+  font-size: 200%;
+  color: #fff;  
+}
+

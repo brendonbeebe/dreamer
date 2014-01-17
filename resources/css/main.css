@@ -869,8 +869,22 @@ button.btn.selected:hover {
     display: inline-block;
 }
 
-.btn.white {
-    background-color: #fff;
+.btn.orange {
+    background-color: #f16521; 
+    color: #fff;
+}
+
+.btn.orange:hover {
+    background-color: #f37639; 
+}
+
+.btn.green {
+    background-color: #63c6ae; 
+    color: #fff;
+}
+
+.btn.green:hover {
+    background-color: #76cdb8; 
 }
 
 .btn.clear {
@@ -2373,32 +2387,34 @@ table.pa-table .pa-choose > .status.select {
 -----------------------------------------------------*/
 
 .employee-info {
-    background: ;
-    padding-top: 90px;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+    background: #ddd;
+    padding: 100px 0px 20px 0px;
 }
 
-.employee-info > .info {
+.employee-info .info {
     float: left;
 }
 
-.employee-info > img {
+.employee-info img {
     float: left;
     margin-right: 20px;
     vertical-align: top;
     display: block;
-    height: 80px;
+    height: 100px;
 }
 
-.employee-info > .info .name {
-    font-weight: 700;
+.employee-info .info .name {
+    font-weight: 800;
     color: #808080;
     font-size: 24px;
-    margin-top: 10px;
 }
 
-.employee-info > .info .position a {
+.employee-info .info .position a {
     font-weight: normal;
     text-decoration: none;
+    color: #f16521;
 }
 
 .title-name {
@@ -2406,6 +2422,10 @@ table.pa-table .pa-choose > .status.select {
     font-size: 24px;
     font-weight: 700;
     color: #808080;
+}
+
+.btn-orange {
+  background: #45494d; 
 }
 
 /*-----------------------------------------------------
