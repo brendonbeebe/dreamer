@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers','ui.state','ui.slider','ui.date','ui.keypress','restangular','angularTreeview']).
+var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers','blueimp.fileupload','ui.state','ui.slider','ui.date','ui.keypress','restangular','angularTreeview']).
   config(function($stateProvider, $routeProvider,RestangularProvider,$urlRouterProvider,$locationProvider){
 
 
