@@ -314,3 +314,69 @@ p.non-profit {
   margin: 20px auto;
   text-align: left;
 }
+
+.lesson-page {
+  width:100%;
+  height: auto;
+  margin-top: 80px;
+}
+
+.sidebar {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  height: 100%;
+  width: auto;
+  left: 0;
+  background: #eee;
+  position: absolute;
+  padding: 20px;
+}
+
+.sidebar hr {
+  margin: 30px 0px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.sidebar ul li {
+  margin: 10px 0px;
+  width: 100%;
+  text-align: center;
+}
+
+.sidebar ul li i {
+  width: 15px;
+  height:20px;
+  margin: 0px;
+  font-size: 150%;
+  color: #f16521;
+}
+
+.sidebar ul li a {
+  width: 30px;
+  height:20px;
+  color: #63c6ae;
+  text-decoration: none;
+}
+
+.sidebar .disabled i {
+  color: #ddd;
+}
+
+ .sidebar .disabled a {
+  color: #ddd;
+}
+
+.sidebar .disabled:hover {
+  background: transparent;
+}
+
+.lesson-view {
+  width: 900px;
+  box-sizing:border-box;
+  margin: 0px auto;
+}

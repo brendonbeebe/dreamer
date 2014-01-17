@@ -53,7 +53,7 @@ return CMap::mergeArray(
 			'connectionString' => 'mysql:host=localhost;dbname=kiddreamer',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
             'enableProfiling'=>true,
             'enableParamLogging'=>true,

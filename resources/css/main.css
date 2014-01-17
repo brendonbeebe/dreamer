@@ -217,7 +217,7 @@ input[type=password]:hover,
 input[type=email]:hover,
 input[type=tel]:hover,
 input[type=number]:hover {
-    border: solid 1px #45b2de;
+    border: solid 1px #f16521;
 }
 
 input[type=text]:focus,
@@ -226,7 +226,7 @@ input[type=password]:focus,
 input[type=email]:focus,
 input[type=tel]:focus,
 input[type=number]:focus {
-    border: solid 1px #45b2de;
+    border: solid 1px #f16521;
 }
 
 input[type=text]:disabled,
@@ -562,6 +562,15 @@ dropdown.mid {
         width: 100%;
         margin: 20px 0;
         text-align: center;
+    }
+
+    button.login-btn {
+        background-color: #63c6ae !important;
+        color: #fff !important;
+    }
+
+    .sign-in a {
+        color: #f16521;
     }
 
     section.register {
@@ -2364,7 +2373,7 @@ table.pa-table .pa-choose > .status.select {
 -----------------------------------------------------*/
 
 .employee-info {
-    margin-top: 20px;
+    padding-top: 90px;
 }
 
 .employee-info > .info {

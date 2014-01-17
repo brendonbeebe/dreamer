@@ -1,17 +1,23 @@
-Lesson Page
-<div class="sidebar">
-    <ul>
-        <li ng-class="{disabled: lessonsCompleted[1]==null}">
-            <a href="#/lessons/first">Lesson 1</a>
-        </li>
-        <li ng-class="{disabled: lessonsCompleted[2]==null}">
-            <a href="#/lessons/second">Lesson 2</a>
-        </li>
-        <li ng-class="{disabled: lessonsCompleted[3]==null}">
-            <a href="#/lessons/third">Lesson 3</a>
-        </li>
-    </ul>
-</div>
+<div class="lesson-page">
+    <div class="sidebar">
+        <h1>Lessons</h1>
+        <hr>
+        <ul>
 
+            <li ng-class="{disabled: lessonsCompleted[1]==null}">
+                <i class="fa fa-clock-o"></i>
+                <a href="#/lessons/first">Lesson 1</a>
+            </li>
+            <li ng-class="{disabled: lessonsCompleted[2]==null}">
+                <i class="fa fa-clock-o"></i>
+                <a href="#/lessons/second">Lesson 2</a>
+            </li>
+            <li ng-class="{disabled: lessonsCompleted[3]==null}">
+                <i class="fa fa-clock-o"></i>
+                <a href="#/lessons/third">Lesson 3</a>
+            </li>
+        </ul>
+    </div>
 <!-- The lesson material get's loaded in the following div-->
-<div ui-view="lesson_view"></div>
+    <div class="lesson-view" ui-view="lesson_view"></div>
+</div>

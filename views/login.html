@@ -15,12 +15,14 @@
                         <input type="password" class="span12" data-ng-model="login.password" required>
                     </label>
                     <div class="alert" ng-show="loggedInError != undefined"><i class="icon-important icon-left"></i>{{loggedInError}}</div>
-                    <button class="btn large blue" data-ng-click="attemptLogin(login)">
+                    <button class="btn large login-btn" data-ng-click="attemptLogin(login)">
                         Sign In
                     </button>
                 </div>
-                <a href="#/forgotpassword" class="pull-left">Can't login?</a>
-                <a href="#/register" class="pull-right">Register</a>
+                <!-- <a href="#/forgotpassword" class="pull-left">Can't login?</a> -->
+                <center>
+                    <a href="#/register">Register</a>
+                </center>
             </div>
         </form>
     </div>

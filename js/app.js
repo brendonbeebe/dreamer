@@ -110,6 +110,9 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/profile", // root route
                 auth:true,
                 views: {
+                    "header_view":{
+                        templateUrl: "views/header.html"
+                    },
                     "main_view": {
                         templateUrl: "views/profile.html",
                         controller: "ProfileController"

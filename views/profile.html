@@ -1,152 +1,155 @@
 <div class="employee-info">
-    <img ng-show="profile.profile_pic != null" ng-src="files/{{profile.profile_pic}}">
-    <img ng-show="profile.profile_pic == null" src="resources/img/default-company-img.jpg">
-    <div class="info">
-        <div class="name">{{profile.first_name}} {{profile.last_name}}</div>
-        <div class="position">
-            <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change Company Image</a>
-        </div>
-    </div>
-</div>
-
-<header class="line line-small grey" style="margin-bottom: 20px;">
-    Information
-    <button class="btn white" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
-        <i class="icon-edit"></i>
-        Edit
-    </button>
-    <button class="btn blue" ng-show="profile.infoEdit" ng-click="infoEditToggle();">
-        <i class="icon-check"></i>
-        Save
-    </button>
-</header>
-<div class="row-fluid">
-    <div class="span6">
-        <label>
-            First Name
-            <span class="data" ng-hide="profile.infoEdit">{{profile.first_name}}</span>
-            <div class="row-fluid" ng-show="profile.infoEdit">
-                <input type="text" class="span12" ng-model="profile.first_name">
-            </div>
-        </label>
-        <label>
-            Last Name
-            <span class="data" ng-hide="profile.infoEdit">{{profile.last_name}}</span>
-            <div class="row-fluid" ng-show="profile.infoEdit">
-                <input type="text" class="span12" ng-model="profile.last_name">
-            </div>
-        </label>
-        <label>
-            Phone
-            <span class="data" ng-hide="profile.infoEdit">{{profile.phone | tel}}</span>
-            <div class="row-fluid" ng-show="profile.infoEdit">
-                <input type="tel" class="span12" ng-model="profile.phone">
-            </div>
-        </label>
-
-    </div>
-    <div class="span6">
-        <label>
-            Address
-            <span class="data" ng-hide="profile.infoEdit">{{profile.address}}</span>
-            <div class="row-fluid" ng-show="profile.infoEdit">
-                <input type="text" class="span12" ng-model="profile.address">
-            </div>
-        </label>
-        <label>
-            City
-            <span class="data" ng-hide="profile.infoEdit">{{profile.city}}</span>
-            <div class="row-fluid" ng-show="profile.infoEdit">
-                <input type="text" class="span12" ng-model="profile.city">
-            </div>
-        </label>
-        <div class="row-fluid">
-            <div class="span6">
-                <label>
-                    State
-                    <span class="data" ng-hide="profile.infoEdit">{{profile.state}}</span>
-                    <div class="row-fluid" ng-show="profile.infoEdit">
-                        <select ng-model="profile.state" ng-options="o.value as o.name for o in states" class="span12"></select>
-                    </div>
-                </label>
-            </div>
-            <div class="span6">
-                <label>
-                    Zip
-                    <span class="data" ng-hide="profile.infoEdit">{{profile.zip}}</span>
-                    <div class="row-fluid" ng-show="profile.infoEdit">
-                        <input type="text" class="span12" ng-model="profile.zip">
-                    </div>
-                </label>
+    <div class="container">
+        <img ng-show="profile.profile_pic != null" ng-src="files/{{profile.profile_pic}}">
+        <img ng-show="profile.profile_pic == null" src="resources/img/default-company-img.jpg">
+        <div class="info">
+            <div class="name">{{profile.first_name}} {{profile.last_name}}</div>
+            <div class="position">
+                <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change Company Image</a>
             </div>
         </div>
     </div>
-    <div class="clearfix"></div>
 </div>
+<div class="container">
+    <header class="line line-small grey" style="margin-bottom: 20px;">
+        Information
+        <button class="btn white" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
+            <i class="icon-edit"></i>
+            Edit
+        </button>
+        <button class="btn blue" ng-show="profile.infoEdit" ng-click="infoEditToggle();">
+            <i class="icon-check"></i>
+            Save
+        </button>
+    </header>
+    <div class="row-fluid">
+        <div class="span6">
+            <label>
+                First Name
+                <span class="data" ng-hide="profile.infoEdit">{{profile.first_name}}</span>
+                <div class="row-fluid" ng-show="profile.infoEdit">
+                    <input type="text" class="span12" ng-model="profile.first_name">
+                </div>
+            </label>
+            <label>
+                Last Name
+                <span class="data" ng-hide="profile.infoEdit">{{profile.last_name}}</span>
+                <div class="row-fluid" ng-show="profile.infoEdit">
+                    <input type="text" class="span12" ng-model="profile.last_name">
+                </div>
+            </label>
+            <label>
+                Phone
+                <span class="data" ng-hide="profile.infoEdit">{{profile.phone | tel}}</span>
+                <div class="row-fluid" ng-show="profile.infoEdit">
+                    <input type="tel" class="span12" ng-model="profile.phone">
+                </div>
+            </label>
 
-
-<div class="lightbox-wrapper">
-    <div class="lightbox" id="getOrgImage">
-        <h2>Change Profile Picture</h2>
-        <ul>
-            <li>
-                Maximum Size: 2MB
-            </li>
-        </ul>
-
-        <form action="yii/User/UploadPic" method="POST" enctype="multipart/form-data" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
-            <div class="col-lg-7">
-                <!-- The fileinput-button span is used to style the file input field as button -->
-                <span class="btn mid-grey fileinput-button pull-left" ng-class="{disabled: disabled}" >
-                    <span>Choose Image...</span>
-                    <input type="file" name="files"  />
-                </span>
-                <button type="button" class="btn blue pull-left start" data-ng-click="submit();">
-                    <span>Start upload</span>
-                </button>
-
-                <!-- The loading indicator is shown during file processing -->
-                <div class="fileupload-loading"></div>
-            </div>
-            <!-- The table listing the files available for upload/download -->
-            <table class="table table-striped files ng-cloak">
-                <tr data-ng-repeat="file in queue">
-                    <td data-ng-switch data-on="!!file.thumbnailUrl">
-                        <div class="preview" data-ng-switch-when="true">
-                            <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" width="200" alt=""></a>
+        </div>
+        <div class="span6">
+            <label>
+                Address
+                <span class="data" ng-hide="profile.infoEdit">{{profile.address}}</span>
+                <div class="row-fluid" ng-show="profile.infoEdit">
+                    <input type="text" class="span12" ng-model="profile.address">
+                </div>
+            </label>
+            <label>
+                City
+                <span class="data" ng-hide="profile.infoEdit">{{profile.city}}</span>
+                <div class="row-fluid" ng-show="profile.infoEdit">
+                    <input type="text" class="span12" ng-model="profile.city">
+                </div>
+            </label>
+            <div class="row-fluid">
+                <div class="span6">
+                    <label>
+                        State
+                        <span class="data" ng-hide="profile.infoEdit">{{profile.state}}</span>
+                        <div class="row-fluid" ng-show="profile.infoEdit">
+                            <select ng-model="profile.state" ng-options="o.value as o.name for o in states" class="span12"></select>
                         </div>
-                        <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
-                    </td>
-                    <td>
-                        <p class="name" data-ng-switch data-on="!!file.url">
-                        <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
-                            <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
-                            <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
-                        </span>
-                            <span data-ng-switch-default>{{file.name}}</span>
-                        </p>
-                        <div data-ng-show="file.error"><span class="label label-danger">Error</span> {{file.error}}</div>
-                    </td>
-                    <td>
-                        <p class="size">{{file.size * 1 | formatFileSize}}</p>
-                        <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
-                    </td>
-
-
-                </tr>
-            </table>
-
-            <div class="controls">
-                <button type="button" class="btn blue cancel pull-right" closelightbox>
-                    <span>Done</span>
-                </button>
-                <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">
-                    Cancel
-                </button>
-
+                    </label>
+                </div>
+                <div class="span6">
+                    <label>
+                        Zip
+                        <span class="data" ng-hide="profile.infoEdit">{{profile.zip}}</span>
+                        <div class="row-fluid" ng-show="profile.infoEdit">
+                            <input type="text" class="span12" ng-model="profile.zip">
+                        </div>
+                    </label>
+                </div>
             </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
 
-        </form>
 
+    <div class="lightbox-wrapper">
+        <div class="lightbox" id="getOrgImage">
+            <h2>Change Profile Picture</h2>
+            <ul>
+                <li>
+                    Maximum Size: 2MB
+                </li>
+            </ul>
+
+            <form action="yii/User/UploadPic" method="POST" enctype="multipart/form-data" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+                <div class="col-lg-7">
+                    <!-- The fileinput-button span is used to style the file input field as button -->
+                    <span class="btn mid-grey fileinput-button pull-left" ng-class="{disabled: disabled}" >
+                        <span>Choose Image...</span>
+                        <input type="file" name="files"  />
+                    </span>
+                    <button type="button" class="btn blue pull-left start" data-ng-click="submit();">
+                        <span>Start upload</span>
+                    </button>
+
+                    <!-- The loading indicator is shown during file processing -->
+                    <div class="fileupload-loading"></div>
+                </div>
+                <!-- The table listing the files available for upload/download -->
+                <table class="table table-striped files ng-cloak">
+                    <tr data-ng-repeat="file in queue">
+                        <td data-ng-switch data-on="!!file.thumbnailUrl">
+                            <div class="preview" data-ng-switch-when="true">
+                                <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" width="200" alt=""></a>
+                            </div>
+                            <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+                        </td>
+                        <td>
+                            <p class="name" data-ng-switch data-on="!!file.url">
+                            <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
+                                <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
+                                <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+                            </span>
+                                <span data-ng-switch-default>{{file.name}}</span>
+                            </p>
+                            <div data-ng-show="file.error"><span class="label label-danger">Error</span> {{file.error}}</div>
+                        </td>
+                        <td>
+                            <p class="size">{{file.size * 1 | formatFileSize}}</p>
+                            <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
+                        </td>
+
+
+                    </tr>
+                </table>
+
+                <div class="controls">
+                    <button type="button" class="btn blue cancel pull-right" closelightbox>
+                        <span>Done</span>
+                    </button>
+                    <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">
+                        Cancel
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>
