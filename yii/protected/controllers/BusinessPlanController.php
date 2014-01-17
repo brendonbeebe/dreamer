@@ -31,10 +31,26 @@ class BusinessPlanController extends ERestController
 
     public function ActionAddItem(){
         $planId = Yii::app()->request->getParam('id');
+        $userModel = User::model()->findByPk(Yii::app()->user->id);
+
         $post = file_get_contents("php://input");
 
         //decode json post input as php array:
         $data = CJSON::decode($post, true);
+
+        $existingPlan = BusinessPlan::model()->find("user_id = :id",array(":id"=>$userModel->id));
+        if(empty($existingPlan)){
+            $existingPlan = new BusinessPlan;
+            $existingPlan->user_id = $userModel->id;
+            $existingPlan->save();
+        }
+
+        $model = new BusinessItems;
+        $model->cost = $data['cost'];
+        $model->item= $data['name'];
+        $model->business_id= $existingPlan->id;
+        $model->save();
+
         $this->renderJson(array(
             'success'=>true,
             'data'=>$data
