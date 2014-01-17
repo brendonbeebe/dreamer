@@ -261,11 +261,11 @@ textarea {
 }
 
 textarea:hover {
-    border: solid 1px #45b2de;
+    border: solid 1px #f16521;
 }
 
 textarea:focus {
-    border: solid 1px #45b2de;
+    border: solid 1px #f16521;
 }
 
 select {
