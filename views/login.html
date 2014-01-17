@@ -1,0 +1,27 @@
+<div class="content-wrapper-parent" windowsize>
+    <div class="wrapper-child">
+        <div class="clearfix"></div>
+        <form name="login" class="full-white">
+            <div class="sign-in">
+                <div class="row-fluid">
+                    <div class="logo-large"></div>
+
+                    <label>
+                        Email
+                        <input type="email" class="span12" data-ng-model="login.email" required>
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" class="span12" data-ng-model="login.password" required>
+                    </label>
+                    <div class="alert" ng-show="loggedInError != undefined"><i class="icon-important icon-left"></i>{{loggedInError}}</div>
+                    <button class="btn large blue" data-ng-click="attemptLogin(login)">
+                        Sign In
+                    </button>
+                </div>
+                <a href="#/forgotpassword" class="pull-left">Can't login?</a>
+                <a href="#/register" class="pull-right">Register</a>
+            </div>
+        </form>
+    </div>
+</div>

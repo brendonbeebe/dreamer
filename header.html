@@ -1,0 +1,248 @@
+<!-- lightbox -->
+
+<div class="lightbox-wrapper">
+    <div id="lightbox" class="lightbox">
+        <h2>Create a Job</h2>
+        <div class="row-fluid">
+            <div class="span12">
+                <label  for="job-name-input">
+                    Job Name
+                    <input type="text" class="span12" id="job-name-input" data-ng-model="job.title" required />
+                </label>
+            </div>
+        </div>
+        <div class="row-fluid">
+            <div class="span4">
+                <label  for="job-positions-input">
+                    Positions To Fill
+                    <input type="number" class="span12" id="job-positions-input" data-ng-model="job.positionsToFill" />
+                </label>
+            </div>
+        </div>
+        <div class="controls">
+            <button class="btn blue pull-right" data-ng-click="addJob(job);">Save</button>
+            <button class="btn white pull-right" closeLightBox="" closelightbox>Cancel</button>
+        </div>
+    </div>
+</div>
+
+
+
+<!--------------------------------------------
+        Header
+    --------------------------------------------->
+<header>
+    <div class="top">
+        <div class="btn-group pull-left">
+            <a href="#/account/organization">
+                <img class="org-logo pull-left" ng-show="org.logo != null" ng-src="files/{{org.logo}}">
+                <img class="org-logo pull-left" ng-show="org.logo == null" src="resources/img/default-company-img.jpg">
+            </a>
+            <div class="org-name"  exactrequirespermission="20">
+                {{organization.name}}
+            </div>
+            <a href="#/dashboard" id="btn-dashboard" class="btn large clear-white pull-left" requirespermission="30" requiressubscription="2">
+                <i class="icon-dashboard icon-left"></i>
+                Dashboard
+            </a>
+            <a href="#/employees" id="btn-employees" class="btn large clear-white pull-left" requirespermission="30"  requiressubscription="1">
+                <i class="icon-employees icon-left"></i>
+                Employees
+            </a>
+            <div class="btn-group pull-left" dropdown  >
+                <button id="btn-jobs" class="btn large clear-white pull-left" requirespermission="30" requiressubscription="2">
+                    <i class="icon-jobs icon-left"></i>
+                    <i class="icon-caret-desc icon-right"></i>
+                    Jobs
+
+                </button>
+                <div class="dropdown large mid right-bottom" donttriggermenuclose style="display:hidden; padding-bottom: 0;">
+                    <!--
+                    On click
+                    set scope.job to the selected job
+                    -->
+                    <label class="row-fluid " for="job-search-input" >
+                        <input id="job-search-input" type="text" class="search" data-ng-model="job.title" >
+                    </label>
+                    <button href="#lightbox" style="display:inline-block; opacity: 1;" class="btn-input btn blue toggleparent" class="btn-input btn blue toggleparent"   allowclick="true" colorbox  >
+                        Create
+                    </button>
+
+                    <div id="job-list" windowsize="51">
+                        <div ng-show="jobs.length==0" class="message">
+                            <em>There are no jobs!</em><br />
+                            <strong>Click "Create" to begin.</strong>
+                        </div>
+                        <div ng-show="jobs.length>0" class="header">
+                            ACTIVE ({{(jobs |  filter:{active:'Y'}).length}})
+                        </div>
+                        <a href="#/jobs/{{job.id}}" class="job-list-item" ng-repeat="job in jobs |  filter:job.title | filter:{active:'Y'} | with:'deleted' "  data-ng-click="selectJob(job);"
+                           data-ng-class="{disabled: job.active == false}">
+                            <div class="name" >{{ job.title }}</div>
+                            <div class="positions">
+                                {{job.positionsToFill}}
+                                Position<span ng-hide="job.positionsToFill==1">s</span> to Fill
+                            </div>
+                        </a>
+                        <div ng-show="jobs.length>0" class="header inactive">
+                            INACTIVE ({{(jobs |  filter:{active:'N'}).length}})
+                        </div>
+                        <a href="#/jobs/{{job.id}}" class="job-list-item inactive" ng-repeat="job in jobs |  filter:job.title | filter:{active:'N'} | with:'deleted' "  data-ng-click="selectJob(job);"
+                           data-ng-class="{disabled: job.active == false}">
+                            <div class="name" >{{ job.title }}</div>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- FUTURE RELEASE
+<a href="#" id="btn-applicants" class="btn pull-left white">
+    <i class="icon-applicants icon-left"></i>
+    Applicant Portal
+</a>
+-->
+
+
+
+            </div>
+
+        </div>
+
+        <div class="btn-group pull-right" dropdown >
+            <button id="btn-user" class="btn large clear-white" >
+                <i class="icon-caret-desc icon-right"></i>
+                {{first_name}} {{last_name}}
+            </button>
+            <div class="dropdown small large left-bottom" >
+                <ul>
+                    <li>
+                        <a href="#/account/organization">
+                            <i class="icon-left icon-profile"></i>
+                            Account
+                        </a>
+                    </li>
+                    <li>
+                        <a href="http://support.persogenics.com" target="_blank">
+                            <i class="icon-help icon-left"></i>
+                            Help
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#/login" data-ng-click="logOut()">
+                            <i class="icon-logout icon-left"></i>
+                            Log Out
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- NOTIFICATION BUTTON/DROPDOWN
+        ---------------------------------------->
+        <div class="btn-group pull-right" dropdown>
+            <button class="btn large clear-white"  ng-show="notifications.length > 0">
+                <i class="icon-alert icon-middle"></i>
+                <span id="global-notice" class="notice" style="display: block;">{{notifications.length}}</span>
+            </button>
+            <div class="dropdown large mid left-bottom  notification" donttriggermenuclose>
+                <div class="status">
+                    Notifications
+                </div>
+
+                <div class="notice" data-ng-repeat="notification in notifications">
+                    <a href="#/account#">
+                        <div class="title">
+                            {{notification.name}}
+                        </div>
+                        <div class="content">
+                            {{notification.text}}
+                        </div>
+                    </a>
+                    <div class="options-group">
+                        <!-- this adds emphasis to the type of notification
+                        <div class="type important">
+                            <i class="icon-important"></i>
+                        </div>
+                        -->
+                        <button class="btn square" allowclick="true" data-ng-click="notificationSeen(notification.id,$index)">
+                            <i class="allowClick icon-close"  allowclick="true"></i>
+                        </button>
+                        <!-- Dropdown for options
+                        ---- not needed right now
+                        <div class="btn-group" dropdown>
+                            <button class="btn square">
+                                <i class="icon-options"></i>
+                            </button>
+                            <div class="dropdown left-top small">
+                                <ul>
+                                    <li>
+                                        <a href="#">Notify</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Send Email Reminder</a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Dismiss</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- FEEDBACK
+        ----------------->
+        <div class="btn-group pull-right" dropdown>
+            <button class="btn large clear-white">
+                <i class="icon-feedback icon-left"></i>
+                Feedback
+            </button>
+            <div class="dropdown large mid left-bottom feedback" donttriggermenuclose>
+                <h2 class="text-center">Feedback</h2>
+                <div ng-init="fb=true" ng-show="fb">
+                    <p>
+                        We value your feedback! Please let us know how it's going so we can continue to improve our product and your experience using Persogenics Hire&trade;.
+                    </p>
+                    <form name="feedbackform">
+                        <div class="row-fluid">
+
+                            <label>
+                                <select ng-init="feedback.type='default'" name="type" class="span12 feedback-select" ng-model="feedback.type" required="required">
+                                    <option disabled value="default">- Please specify the topic -</option>
+                                    <option value="question">Awesome app!</option>
+                                    <option value="question">I have a feature request</option>
+                                    <option value="problem">I found a bug</option>
+                                    <option value="problem">I'm missing data</option>
+                                    <option value="question">Other</option>
+                                </select>
+                            </label>
+                            <label>
+                                <textarea name="question" ng-model="feedback.question" class="span12" placeholder="Give us feedback or ask a question" required></textarea>
+                            </label>
+                            <button class="btn blue pull-right" ng-click="submitFeedback();">Submit</button>
+                            <button class="btn pull-right white"  allowclick="true">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+                <div ng-hide="fb">
+                    <p>
+                        Thank you for your submission! Your feedback is essential to making this product great!
+                    </p>
+                    <button class="btn blue pull-right" allowclick="true">Close</button>
+                    <button class="btn pull-right" ng-click="fb=true">Submit more feedback?</button>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="pull-right loader" ng-hide="isSaving == 0">
+
+            <i class="icon-loader icon-right"></i>
+            Saving
+        </div>
+    </div>
+
+</header>

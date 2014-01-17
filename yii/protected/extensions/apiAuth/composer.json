@@ -1,0 +1,18 @@
+{
+    "name": "denits/yii-apiauth",
+    "type": "libary",
+    "license": "New BSD License",
+	"description": "HTTP authentication for automated requests",
+    "keywords": ["yii","authentication","basic","digest"],
+    "homepage": "http://github.com/DenitS/yii-apiAuth",
+    "authors": [
+        {
+            "name": "Denit Serp",
+            "email": "denit.serp@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.16"
+    }
+}
