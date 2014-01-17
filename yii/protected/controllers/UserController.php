@@ -684,8 +684,14 @@ class UserController extends ERestController
         //decode json post input as php array:
         $data = CJSON::decode($post, true);
 
-
-
+        $paramsSet = isset ($data['first_name']) 
+                && isset ($data['last_name'])
+                && isset ($data['email']);
+       
+        if ( !$paramsSet ) {
+            throw new CHttpException(404, 'A Parameter is missing');
+        }
+ 
         $newUser = new User;
         $newUser->first_name = $data['first_name'];
         $newUser->last_name= $data['last_name'];
@@ -696,32 +702,7 @@ class UserController extends ERestController
         $success = true;
 
         if($newUser->save()){
-            $am = Yii::app()->getAuthManager();
-            $am->assign("Applicant", $newUser->id);
-
-            $mandrill = new Mandrill();
-            $template_name = "new-registration";
-            $template_content = array();
-            $template_content[] = array(
-                "name"=>"first_name",
-                "content"=>$newUser->first_name
-            );
-            $template_content[] = array(
-                "name"=>"email",
-                "content"=>$newUser->email
-            );
-            $to = array();
-            $to [] = array(
-                "email"=>$newUser->email,
-                "name"=>$newUser->first_name . " ".$newUser->last_name
-            );
-            $message = array(
-                "to"=> $to
-            );
-
-
-            $mandrill->messages->sendTemplate($template_name, $template_content, $message);
-
+            // Create User
 
             $message = "User was created.";
         } else {
@@ -729,15 +710,6 @@ class UserController extends ERestController
             $errors = $newUser->getErrors();
             $message = $errors;
         }
-
-
-        //Create quiz attempt
-        $jobFitTest = new QuizAttempt;
-        $jobFitTest->user_id = $newUser->id;
-        $jobFitTest->quiz_id = 2;
-        $jobFitTest->type = 'application';
-        $jobFitTest->save();
-
 
 
         $this->renderJson(array(

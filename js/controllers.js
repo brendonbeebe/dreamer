@@ -46,6 +46,48 @@ myApp.controller(
 );
 
 
+myApp.controller(
+    'RegisterController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+        $scope.init = function(){
+            $scope.registrationError = undefined;
+            if($cookieStore.get('authdata')){
+
+                $location.path("/lessons");
+            }
+
+            //Load defaults
+
+            //If current step is job profile
+            //Depending on current jobprofile step load different defaults
+        }
+
+        $scope.init();
+        $scope.$watch( function () { return userFactory.loggedInError; }, function (data) {
+            $scope.loggedInError = data;
+        }, true);
+
+        $scope.attemptRegistration = function(){
+            var form = $scope.register_form
+            
+            if (form.$valid) {
+                
+                var email = $scope.register.email
+                var password = $scope.register.password
+                
+                $http.post('yii/user/registeruser', $scope.register).success(function(data) {
+                    userFactory.logIn(true,email,password);
+                });
+                
+            }
+
+        }
+
+
+
+    }
+);
+
 
 myApp.controller(
     'BusinessPlanController',

@@ -1,0 +1,36 @@
+<div class="content-wrapper-parent" windowsize>
+    <div class="wrapper-child">
+        <div class="clearfix"></div>
+        <form name="register_form" class="full-white">
+            <div class="sign-in">
+                <div class="row-fluid">
+                    <div class="logo-large"></div>
+                    <label>
+                        First Name
+                        <input type="text" class="span12" data-ng-model="register.first_name" name='first_name' required>
+                    </label>
+                    <label>
+                        Last Name
+                        <input type="text" class="span12" data-ng-model="register.last_name" name='last_name' required>
+                    </label>
+                    <label>
+                        Email
+                        <input type="email" class="span12" data-ng-model="register.email" name='email' required>
+                    </label>
+                    <label>
+                        Password
+                        <input type="password" class="span12" data-ng-model="register.password" name='password' required>
+                    </label>
+                    <div class="alert" ng-show="registrationError != undefined"><i class="icon-important icon-left"></i>{{registrationError}}</div>
+                    <button class="btn large login-btn" data-ng-click="attemptRegistration()">
+                        Sign Up
+                    </button>
+                </div>
+                <!-- <a href="#/forgotpassword" class="pull-left">Can't login?</a> -->
+                <center>
+                    <a href="#/login">I already have an account</a>
+                </center>
+            </div>
+        </form>
+    </div>
+</div>

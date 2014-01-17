@@ -151,6 +151,17 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         controller: "ProfileController"
                     }
                 }
+            }).state('register', {
+                url: "/register", // root route
+                views: {
+                    "header_view":{
+                        templateUrl: "views/header.html"
+                    },
+                    "main_view": {
+                        templateUrl: "views/register.html",
+                        controller: "RegisterController"
+                    }
+                }
             })
     }).run(function($rootScope,Restangular,userFactory,$state,$location,$cookieStore,$window){
 
