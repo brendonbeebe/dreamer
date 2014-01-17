@@ -35,7 +35,10 @@ class BusinessPlanController extends ERestController
 
         //decode json post input as php array:
         $data = CJSON::decode($post, true);
-        var_dump($data);
+        $this->renderJson(array(
+            'success'=>true,
+            'data'=>$data
+        ));
     }
 
 }

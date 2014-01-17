@@ -22,8 +22,8 @@
 
         <p>What supplies do you need?</p>
         <li ng-repeat="supplies in plan.suppliesneeded">
-            <label>Name <input type="text"  data-ng-model="supplies.name"/></label>
-            <label>Cost <input type="text"  data-ng-model="supplies.cost"/></label>
+            <label>Name {{supplies.name}}</label>
+            <label>Cost {{supplies.cost}}</label>
         </li>
         <label>Name <input type="text"  data-ng-model="newsupply.name"/></label>
         <label>Cost <input type="text"  data-ng-model="newsupply.cost"/></label>
