@@ -45,6 +45,8 @@ myApp.controller(
     }
 );
 
+
+
 myApp.controller(
     'BusinessPlanController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
@@ -56,6 +58,11 @@ myApp.controller(
         $scope.init();
 
 
+        $scope.addItem = function(){
+            $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
+                $scope.plan.suppliesneeded = response.data;
+            })
+        }
         $scope.finishplan = function(){
             $scope.submitted = true;
         };

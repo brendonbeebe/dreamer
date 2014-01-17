@@ -1,17 +1,22 @@
-Lesson Page
-<div class="sidebar">
-    <ul>
-        <li ng-class="{disabled: lessonsCompleted[1]==null}">
-            <a href="#/lessons/first">Lesson 1</a>
-        </li>
-        <li ng-class="{disabled: lessonsCompleted[2]==null}" >
-            <a href="#/lessons/second">Lesson 2</a>
-        </li>
-        <li ng-class="{disabled: lessonsCompleted[3]==null}">
-            <a href="#/lessons/third">Lesson 3</a>
-        </li>
-    </ul>
-</div>
+<div class="container">
+    Lesson Page
+    <div class="sidebar">
+        <ul>
+            <li ng-class="{disabled: lessonsCompleted[1]==null}">
+                <a href="#/lessons/first">Lesson 1</a>
+            </li>
+            <li ng-class="{disabled: lessonsCompleted[2]==null}" >
+                <a href="#/lessons/second">Lesson 2</a>
+            </li>
+            <li ng-class="{disabled: lessonsCompleted[3]==null}">
+                <a href="#/lessons/third">Lesson 3</a>
+            </li>
+            <li ng-class="{disabled: lessonsCompleted[3]==null}">
+                <a href="#/businessplan">Business Plan</a>
+            </li>
+        </ul>
+    </div>
 
-<!-- The lesson material get's loaded in the following div-->
-<div ui-view="lesson_view"></div>
+    <!-- The lesson material get's loaded in the following div-->
+    <div ui-view="lesson_view"></div>
+</div>

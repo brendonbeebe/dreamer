@@ -8,8 +8,8 @@ html, body {
     padding: 0px;
 }
 
-body {
-    overflow-y: hidden;
+.main_view{
+    margin-top:80px;
 }
 
 body {

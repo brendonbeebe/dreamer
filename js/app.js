@@ -89,9 +89,12 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                     }
                 }
             }).state('businessplan', {
-                url: "/BusinessPlan", // root route
+                url: "/businessplan", // root route
                 auth:true,
                 views: {
+                    "header_view":{
+                        templateUrl: "views/header.html"
+                    },
                     "main_view": {
                         templateUrl: "views/businessplan.html",
                         controller: "BusinessPlanController"
@@ -101,6 +104,9 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/quiz", // root route
                 auth:true,
                 views: {
+                    "header_view":{
+                        templateUrl: "views/header.html"
+                    },
                     "main_view": {
                         templateUrl: "views/lessons.html",
                         controller: "LessonsController"
