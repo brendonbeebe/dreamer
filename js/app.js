@@ -2,7 +2,7 @@
 
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers','ui.state','ui.slider','ui.date','ui.keypress','restangular','angularTreeview']).
+var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.directives', 'myApp.controllers','blueimp.fileupload','ui.state','ui.slider','ui.date','ui.keypress','restangular','angularTreeview']).
   config(function($stateProvider, $routeProvider,RestangularProvider,$urlRouterProvider,$locationProvider){
 
 
@@ -21,8 +21,40 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/lessons", // root route
                 auth:true,
                 views: {
+                    "header_view":{
+                        templateUrl: "views/header.html"
+                    },
                     "main_view": {
-                        templateUrl: "views/lessons.html"
+                        templateUrl: "views/lessons.html",
+                        controller: "LessonsController"
+                    }
+                }
+            }).state('lessons.first', {
+                url: "/first", // root route
+                auth:true,
+                views: {
+                    "lesson_view": {
+                        templateUrl: "views/lessons/first.html",
+                        controller: "LessonsController"
+                    }
+                }
+            }).state('lessons.second', {
+                url: "/second", // root route
+                auth:true,
+                views: {
+                    "lesson_view": {
+                        templateUrl: "views/lessons/second.html",
+                        controller: "LessonsController"
+                    }
+                }
+            }).state('lessons.third', {
+                url: "/third", // root route
+                auth:true,
+                views: {
+
+                    "lesson_view": {
+                        templateUrl: "views/lessons/third.html",
+                        controller: "LessonsController"
                     }
                 }
             }).state('main', {

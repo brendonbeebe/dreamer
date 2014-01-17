@@ -28,19 +28,15 @@ class UserController extends ERestController
             ),
             array('allow',
                 'actions'=>array('restList', 'restView','create','update','GetMyNotifications','UserInfo'),
-                'roles'=>array('Applicant'),
+                'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('restCreate', 'restUpdate', 'restDelete','admin','delete','createnewuser','GetDashboardInfo'),
-                'roles'=>array('Company Recruiter'),
+                'actions'=>array('delete','createnewuser','GetDashboardInfo'),
+                'users'=>array('@'),
             ),
             array('allow',
-                'actions'=>array('SubscriptionDetails'),
-                'roles'=>array('Company Admin'),
-            ),
-            array('allow',
-                'actions'=>array(''),
-                'roles'=>array('Super Admin'),
+                'actions'=>array('UploadPic'),
+                'users'=>array('@'),
             ),
             array('deny',  // deny all users
                 'users'=>array('*'),
@@ -538,7 +534,8 @@ class UserController extends ERestController
                 "city"=>$userModel->city,
                 "state"=>$userModel->state,
                 "zip"=>$userModel->zip,
-                "lessonsComplete"=>$userModel->lessonsCompletes
+                "lessonsComplete"=>$userModel->lessonsCompletes,
+                "profile_pic"=>$userModel->profile_pic,
             );
 
 
@@ -788,6 +785,40 @@ class UserController extends ERestController
 		}
 	}
 
+
+    public function actionUploadPic(){
+        $model=new UploadFile;
+        $userModel = User::model()->find("id = :id",array(":id"=>Yii::app()->user->id));
+        if(empty($userModel))
+            throw new CHttpException(402, 'Authorization issue.');
+        $random = rand(0,100);
+
+        if(isset($_FILES))
+        {
+            $model->upload_file=CUploadedFile::getInstanceByName('files');
+            if($model->validate()){
+                $model->upload_file->saveAs("../files/profilePic".$random.$userModel->id.".".$model->upload_file->extensionName);
+                $userModel->profile_pic = "profilePic".$random.$userModel->id.".".$model->upload_file->extensionName;
+                if(!$userModel->save())
+                    throw new CHttpException(500, 'Unable to save organization.');
+            } else
+                throw new CHttpException(500, 'Unable to save file.');
+
+
+        }
+
+        $files = array();
+
+        $files[0] = array(
+            "name"=> $model->upload_file->name,
+            "size"=> $model->upload_file->size,
+            "url"=> "/files/profilePic".$random.$userModel->id.".".$model->upload_file->extensionName,
+            "thumbnailUrl"=>"/files/profilePic".$random.$userModel->id.".".$model->upload_file->extensionName,
+            //"thumbnailUrl"=> "http:\/\/example.org\/files\/thumbnail\/picture1.jpg",
+            "deleteType"=> "DELETE"
+        );
+        $this->renderJson(array("files"=>$files));
+    }
 
 
 

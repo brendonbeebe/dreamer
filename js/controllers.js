@@ -203,8 +203,29 @@ myApp.controller(
     }
 );
 
+myApp.controller(
+    'LessonsController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+        $scope.init = function(){
+            $scope.$watch( function () { return userFactory.user; }, function (data) {
+                $scope.profile = data;
+                $scope.processLessonsComplete();
+            })
+        }
+
+
+        $scope.processLessonsComplete = function(){
+            $scope.lessonsCompleted = {};
+            angular.forEach($scope.profile.lessonsComplete,function(value,key){
+                $scope.lessonsCompleted[value.lesson_id] = value;
+            });
+        }
+
+
+        $scope.init();
 
 
 
 
-
+    }
+);

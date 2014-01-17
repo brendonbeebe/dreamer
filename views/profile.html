@@ -1,3 +1,14 @@
+<div class="employee-info">
+    <img ng-show="profile.profile_pic != null" ng-src="files/{{profile.profile_pic}}">
+    <img ng-show="profile.profile_pic == null" src="resources/img/default-company-img.jpg">
+    <div class="info">
+        <div class="name">{{profile.first_name}} {{profile.last_name}}</div>
+        <div class="position">
+            <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change Company Image</a>
+        </div>
+    </div>
+</div>
+
 <header class="line line-small grey" style="margin-bottom: 20px;">
     Information
     <button class="btn white" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
@@ -71,4 +82,71 @@
         </div>
     </div>
     <div class="clearfix"></div>
+</div>
+
+
+<div class="lightbox-wrapper">
+    <div class="lightbox" id="getOrgImage">
+        <h2>Change Profile Picture</h2>
+        <ul>
+            <li>
+                Maximum Size: 2MB
+            </li>
+        </ul>
+
+        <form action="yii/User/UploadPic" method="POST" enctype="multipart/form-data" data-file-upload="options" data-ng-class="{'fileupload-processing': processing() || loadingFiles}">
+            <div class="col-lg-7">
+                <!-- The fileinput-button span is used to style the file input field as button -->
+                <span class="btn mid-grey fileinput-button pull-left" ng-class="{disabled: disabled}" >
+                    <span>Choose Image...</span>
+                    <input type="file" name="files"  />
+                </span>
+                <button type="button" class="btn blue pull-left start" data-ng-click="submit();">
+                    <span>Start upload</span>
+                </button>
+
+                <!-- The loading indicator is shown during file processing -->
+                <div class="fileupload-loading"></div>
+            </div>
+            <!-- The table listing the files available for upload/download -->
+            <table class="table table-striped files ng-cloak">
+                <tr data-ng-repeat="file in queue">
+                    <td data-ng-switch data-on="!!file.thumbnailUrl">
+                        <div class="preview" data-ng-switch-when="true">
+                            <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" width="200" alt=""></a>
+                        </div>
+                        <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+                    </td>
+                    <td>
+                        <p class="name" data-ng-switch data-on="!!file.url">
+                        <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
+                            <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
+                            <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+                        </span>
+                            <span data-ng-switch-default>{{file.name}}</span>
+                        </p>
+                        <div data-ng-show="file.error"><span class="label label-danger">Error</span> {{file.error}}</div>
+                    </td>
+                    <td>
+                        <p class="size">{{file.size * 1 | formatFileSize}}</p>
+                        <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()"><div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div></div>
+                    </td>
+
+
+                </tr>
+            </table>
+
+            <div class="controls">
+                <button type="button" class="btn blue cancel pull-right" closelightbox>
+                    <span>Done</span>
+                </button>
+                <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">
+                    Cancel
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
 </div>
