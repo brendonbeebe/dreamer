@@ -411,11 +411,11 @@ p.non-profit {
 }
 
 .profile-lesson-tile.complete {
-  background-color: #f16521;
+  background-color: #63c6ae;
 }
 
 .profile-lesson-tile.current {
-  background-color: #63c6ae;
+  background-color: #f16521;
 }
 
 .profile-lesson-tile.incomplete {
@@ -428,3 +428,105 @@ p.non-profit {
   color: #fff;  
 }
 
+.each-lesson {
+  padding: 30px 0px 0px 0px;
+}
+
+.each-lesson h1{
+  font-weight: 800;
+    color: #ddd;
+    font-size: 24px;
+}
+
+.lesson-video {
+  width:62%;
+  float:left;
+}
+
+.lesson-content {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  width:34%;
+  margin-left:20px;
+  float:right;
+}
+
+.quizzes h1{
+  font-weight: 800;
+    color: #ddd;
+    font-size: 24px;
+}
+
+.quizzes {
+  width:100%;
+  padding-top: 30px;
+}
+
+.submit-quiz {
+  width:100%;
+  height: 70px;
+  border-bottom: 2px solid #ccc;
+}
+
+.submit-quiz h1 {
+  float:left;
+}
+
+.submit-quiz button {
+  float:right;
+}
+
+.questions {
+  width:50%;
+  float: left;
+}
+
+.quiz-question {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  margin: 30px 0px;
+}
+
+.quiz-question label {
+  margin: 5px 20px;
+}
+
+.quiz-question label input {
+  margin-right: 20px;
+}
+
+.help-quiz {
+  background: #bbb;
+  height: auto;  
+  width:50%;
+  float: right;
+}
+
+.help-info {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  height:185px;
+  padding: 20px 20px 0px 20px;
+  color:#fff;
+  box-sizing:border-box;
+  text-align: center;
+}
+
+.business-plan {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background: #ddd;
+  padding: 100px 0px 20px 0px;
+}
+
+.business-plan h1 {
+  font-weight: 800;
+  color: #808080;
+  font-size: 24px;
+  text-align: center;
+}
+
+.business-plan-right {
+  width:80%;
+  margin: 20px auto;
+}

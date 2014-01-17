@@ -93,7 +93,8 @@ myApp.controller(
     'BusinessPlanController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
         $scope.init = function(){
-
+            $scope.plan = {};
+            $scope.plan.suppliesneeded = [];
         }
 
 
@@ -102,7 +103,7 @@ myApp.controller(
 
         $scope.addItem = function(){
             $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
-                $scope.plan.suppliesneeded = response.data;
+                $scope.plan.suppliesneeded.push(response.data);
             })
         }
         $scope.finishplan = function(){
