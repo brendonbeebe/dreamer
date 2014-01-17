@@ -5,20 +5,36 @@
         <div class="info">
             <div class="name">{{profile.first_name}} {{profile.last_name}}</div>
             <div class="position">
-                <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change Company Image</a>
+                <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change your Profile Image</a>
             </div>
+        </div>
+        <div class="profile-lesson">
+            <div class="lesson-title">
+                Your Lesson Progress
+            </div>
+            <a class="profile-lesson-tile current" href="#/lessons/first">
+                <span>1</span>
+            </a>
+            <a class="profile-lesson-tile complete" href="#/lessons/second">
+                <span>2</span>
+            </a>
+            <a class="profile-lesson-tile incomplete" href="#/lessons/third">
+                <span>3</span>
+            </a>
+        </div>
+        <div class="clear">
         </div>
     </div>
 </div>
-<div class="container">
+<div class="container edit-info">
     <header class="line line-small grey" style="margin-bottom: 20px;">
         Information
-        <button class="btn white" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
-            <i class="icon-edit"></i>
+        <button class="btn orange" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
+            <i class="fa fa-edit"></i>
             Edit
         </button>
-        <button class="btn blue" ng-show="profile.infoEdit" ng-click="infoEditToggle();">
-            <i class="icon-check"></i>
+        <button class="btn green" ng-show="profile.infoEdit" ng-click="infoEditToggle();">
+            <i class="fa fa-check"></i>
             Save
         </button>
     </header>
