@@ -411,11 +411,11 @@ p.non-profit {
 }
 
 .profile-lesson-tile.complete {
-  background-color: #f16521;
+  background-color: #63c6ae;
 }
 
 .profile-lesson-tile.current {
-  background-color: #63c6ae;
+  background-color: #f16521;
 }
 
 .profile-lesson-tile.incomplete {
@@ -510,4 +510,41 @@ p.non-profit {
   color:#fff;
   box-sizing:border-box;
   text-align: center;
+}
+
+.business-plan {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background: #ddd;
+  padding: 100px 0px 20px 0px;
+}
+
+.business-plan h1 {
+  font-weight: 800;
+  color: #808080;
+  font-size: 24px;
+  text-align: center;
+}
+
+.business-plan-right {
+  width:80%;
+  margin: 20px auto;
+}
+
+.business-plan-right p {
+  margin-top: 40px;
+}
+
+.project {
+  height:222px;
+  width: 222px;
+  margin: 5px;
+  background: #eee;
+  float:left;
+}
+
+.project img {
+  height:222px;
+  width: 222px;
+  margin: 0px;
 }

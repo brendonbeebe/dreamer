@@ -166,7 +166,7 @@ myApp.controller(
 
 myApp.controller(
     'ProfileController',
-    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state){
 
         // TODO: would this go in a directive?
         $scope.states = [
@@ -235,7 +235,15 @@ myApp.controller(
         $scope.init = function(){
             $scope.$watch( function () { return userFactory.user; }, function (data) {
                 $scope.profile = data;
-            })
+                $scope.processLessonsComplete();
+            }, true)
+        }
+        
+        $scope.processLessonsComplete = function(){
+            $scope.lessonsCompleted = {};
+            angular.forEach($scope.profile.lessonsComplete,function(value,key){
+                $scope.lessonsCompleted[value.lesson_id] = value;
+            });
         }
 
 
@@ -246,9 +254,50 @@ myApp.controller(
             $scope.submitted = true;
         };
 
-
-
-
+        $scope.isCurrent = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            if (lessonNumber == 1 && $scope.lessonsCompleted[lessonNumber] == null) {
+                return true;
+            } else {
+                
+                if ($scope.lessonsCompleted[lessonNumber - 1] != null && $scope.lessonsCompleted[lessonNumber] == null) {
+                    return true;
+                }
+                 
+            }
+            
+            return false;
+        }
+        
+        $scope.isComplete = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            return $scope.lessonsCompleted[lessonNumber] != null;
+        }
+        
+        $scope.isIncomplete = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            if ( !$scope.isCurrent(lessonNumber) && $scope.lessonsCompleted[lessonNumber] == null ) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        $scope.navigate = function(state) {
+            console.log(state);
+            $state.transitionTo(state);
+        }
+        
+        var isLessonsSet = function() {
+            return ($scope.profile != undefined && $scope.lessonsCompleted != undefined);
+        }
+        
     }
 );
 
@@ -311,7 +360,7 @@ myApp.controller(
             $scope.$watch( function () { return userFactory.user; }, function (data) {
                 $scope.profile = data;
                 $scope.processLessonsComplete();
-            })
+            }, true)
         }
 
 
@@ -322,11 +371,50 @@ myApp.controller(
             });
         }
 
+        $scope.isCurrent = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            if (lessonNumber == 1 && $scope.lessonsCompleted[lessonNumber] == null) {
+                return true;
+            } else {
+                
+                if ($scope.lessonsCompleted[lessonNumber - 1] != null && $scope.lessonsCompleted[lessonNumber] == null) {
+                    return true;
+                }
+                 
+            }
+            
+            return false;
+        }
+        
+        $scope.isComplete = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            return $scope.lessonsCompleted[lessonNumber] != null;
+        }
+        
+        $scope.isIncomplete = function(lessonNumber) {
+            if ( !isLessonsSet() ) { return false; }
+            
+            var lessons = $scope.lessonsCompleted;
+            if ( !$scope.isCurrent(lessonNumber) && $scope.lessonsCompleted[lessonNumber] == null ) {
+                return true;
+            }
+            
+            return false;
+        }
+        
+        $scope.navigate = function(state) {
+            $state.transitionTo(state);
+        }
+        
+        var isLessonsSet = function() {
+            return ($scope.profile != undefined && $scope.lessonsCompleted != undefined);
+        }
 
         $scope.init();
-
-
-
 
     }
 );
