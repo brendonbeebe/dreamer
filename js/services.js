@@ -47,6 +47,7 @@ myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangula
 
     factory.logOut = function(){
         $cookieStore.remove('authdata');
+        factory.user = null;
         $http.get("yii/user/logout");
         loggedIn = false;
 

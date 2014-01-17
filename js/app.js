@@ -22,7 +22,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 auth:true,
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/lessons.html",
@@ -61,7 +62,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "", // root route
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/home.html"
@@ -71,7 +73,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/", // root route
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/home.html"
@@ -81,7 +84,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/login", // root route
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/login.html",
@@ -93,7 +97,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 auth:true,
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/businessplan.html",
@@ -105,7 +110,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 auth:true,
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/lessons.html",
@@ -144,7 +150,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 auth:true,
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/profile.html",
@@ -155,7 +162,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                 url: "/register", // root route
                 views: {
                     "header_view":{
-                        templateUrl: "views/header.html"
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
                     },
                     "main_view": {
                         templateUrl: "views/register.html",

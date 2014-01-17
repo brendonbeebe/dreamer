@@ -114,6 +114,38 @@ myApp.controller(
 
     }
 );
+
+
+myApp.controller(
+    'HeaderController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state){
+        $scope.init = function(){
+            $scope.$watch( function () { return userFactory.user; }, function (data) {
+                $scope.profile = data;
+            }, true)
+        }
+
+
+        $scope.init();
+        $scope.addItem = function(){
+            $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
+                $scope.plan.suppliesneeded = response.data;
+            })
+        }
+        $scope.finishplan = function(){
+            $scope.submitted = true;
+        };
+
+        $scope.logout = function() {
+            userFactory.logOut();
+            $state.transitionTo('index');
+        };
+
+
+    }
+); 
+
+
 myApp.controller(
     'ProfileController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
