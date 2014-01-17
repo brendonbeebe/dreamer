@@ -34,7 +34,7 @@
                 </li>
                 <label>Name <input type="text"  data-ng-model="newsupply.name"/></label>
                 <label>Cost <input type="text"  data-ng-model="newsupply.cost"/></label>
-                <button ng-click="addItem()">+</button>
+                <span style="color:#ddd;text-size:80%;"><button class="btn orange" ng-click="addItem()"><i style="font-size:150%;margin-top:-5px;" class="fa fa-plus"></i></button> Add another supply</span>
                 <span class="required" ng-show="businessplan.suppliesneeded.$error.required && (businessplan.suppliesneeded.$dirty || submitted)">This field is required</span>
 
 
@@ -52,7 +52,12 @@
                 <span class="required" ng-show="businessplan.cost.$error.required && (businessplan.cost.$dirty || submitted)">This field is required</span>
             </div>
             <center>
+                </br>
+                </br>
             <button class="btn green" ng-click="finishplan()">Submit your Business Plan</button>
+                </br>
+                </br>
+                </br>
             </center>
 
         </form>

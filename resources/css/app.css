@@ -530,3 +530,21 @@ p.non-profit {
   width:80%;
   margin: 20px auto;
 }
+
+.business-plan-right p {
+  margin-top: 40px;
+}
+
+.project {
+  height:222px;
+  width: 222px;
+  margin: 5px;
+  background: #eee;
+  float:left;
+}
+
+.project img {
+  height:222px;
+  width: 222px;
+  margin: 0px;
+}
