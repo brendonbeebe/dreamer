@@ -5,17 +5,17 @@
         <hr>
         <ul>
 
-            <li ng-class="{disabled: lessonsCompleted[1]==null}">
-                <i class="fa fa-clock-o"></i>
-                <a href="#/lessons/first">Lesson 1</a>
+            <li ng-class='{current: isCurrent(1), complete: isComplete(1), disabled: isIncomplete(1)}'>
+                <i class="fa" ng-class='{"fa-clock-o": isIncomplete(1) || isCurrent(1), "fa-check": isComplete(1)}'></i>
+                <a>Lesson 1</a>
             </li>
-            <li ng-class="{disabled: lessonsCompleted[2]==null}">
-                <i class="fa fa-clock-o"></i>
-                <a href="#/lessons/second">Lesson 2</a>
+            <li ng-class='{current: isCurrent(2), complete: isComplete(2), disabled: isIncomplete(2)}'>
+                <i class="fa" ng-class='{"fa-clock-o": isIncomplete(2) || isCurrent(2), "fa-check": isComplete(2)}'></i>
+                <a>Lesson 2</a>
             </li>
-            <li ng-class="{disabled: lessonsCompleted[3]==null}">
-                <i class="fa fa-clock-o"></i>
-                <a href="#/lessons/third">Lesson 3</a>
+            <li ng-class='{current: isCurrent(3), complete: isComplete(3), disabled: isIncomplete(3)}'>
+                <i class="fa" ng-class='{"fa-clock-o": isIncomplete(3) || isCurrent(3), "fa-check": isComplete(3)}'></i>
+                <a>Lesson 3</a>
             </li>
         </ul>
     </div>

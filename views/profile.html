@@ -12,15 +12,15 @@
             <div class="lesson-title">
                 Your Lesson Progress
             </div>
-            <a class="profile-lesson-tile current" href="#/lessons/first">
+            <button class="profile-lesson-tile" ng-disabled="!isCurrent(1)" ng-class='{current: isCurrent(1), complete: isComplete(1), incomplete: isIncomplete(1)}' ng-click="navigate('lessons.first')">
                 <span>1</span>
-            </a>
-            <a class="profile-lesson-tile complete" href="#/lessons/second">
+            </button>
+            <button class="profile-lesson-tile" ng-disabled="!isCurrent(2)" ng-class='{current: isCurrent(2), complete: isComplete(2), incomplete: isIncomplete(2)}' ng-click="navigate('lessons.second')">
                 <span>2</span>
-            </a>
-            <a class="profile-lesson-tile incomplete" href="#/lessons/third">
+            </button>
+            <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
                 <span>3</span>
-            </a>
+            </button>
         </div>
         <div class="clear">
         </div>
