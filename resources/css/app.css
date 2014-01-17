@@ -234,12 +234,71 @@ p.non-profit {
 
 .how {
   background: #63c6ae;
+  width: 100%;
+  height: auto;
+  padding: 90px 0px;
+  clear: both;
+}
+
+.how h1 {
+  font-size: 100%;
+  text-shadow: none;
+  color: #fff;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+  float: none;
+  text-decoration: none;
+  display: block;
+  text-transform: uppercase;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  margin: 0px;
+  display: block;
+  text-align: center;
 }
 
 .how .thirds {
   width: 33%;
   float: left;
   padding: 20px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.how .thirds i {
+  font-size: 700%;
+  display: inline-block;
+  margin: 0px auto 100px auto;
+  width:100%;
+}
+
+.how .thirds span {
+  background: #f16521;
+  border: #fff solid 2px;
+  color: #fff;
+  border-radius: 100%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  padding: 10px 17px;
+  font-size: 120%;
+  display: inline-block;
+  margin: auto;
+}
+
+.how .thirds p {
+  color: #45494d;
+  font-size: 150%;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  width: 60%;
+  margin: 20px auto 0px auto;
+  text-align: center;
+}
+
+.clear {
+  clear:both;
 }
 
 .what {
