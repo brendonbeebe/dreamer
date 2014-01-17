@@ -112,10 +112,16 @@ myApp.controller(
 //            $existingPlan->customer= $data['customer'];
 //            $existingPlan->summary= $data['summary'];
 //            $existingPlan->value= $data['value'];
-            var summary = $scope.plan.description + " " + $scope.plan.whystart;
-            var activities = $scope.plan.servicedesc  +" "+ $scope.plan.prdtosell;
+            var summary = $scope.plan.whystart;
+            var activities = $scope.plan.description;
             var customer = $scope.plan.customer;
-            var value = $scope.plan.prdtosell;
+
+            if($scope.plan.servicedesc != undefined){
+                var value = $scope.plan.servicedesc;
+            } else {
+                var value = $scope.plan.prdtosell;
+            }
+
 
             $http.post('yii/BusinessPlan/SaveBusinessPlan',{
                 "activities":activities,
