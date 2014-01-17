@@ -56,6 +56,33 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         controller: "LoginController"
                     }
                 }
+            }).state('businessplan', {
+                url: "/BusinessPlan", // root route
+                auth:true,
+                views: {
+                    "main_view": {
+                        templateUrl: "views/businessplan.html",
+                        controller: "BusinessPlanController"
+                    }
+                }
+            }).state('quiz', {
+                url: "/quiz", // root route
+                auth:true,
+                views: {
+                    "main_view": {
+                        templateUrl: "views/quiz.html",
+                        controller: "QuizController"
+                    }
+                }
+            }).state('profile', {
+                url: "/profile", // root route
+                auth:true,
+                views: {
+                    "main_view": {
+                        templateUrl: "views/profile.html",
+                        controller: "ProfileController"
+                    }
+                }
             })
     }).run(function($rootScope,Restangular,userFactory,$state,$location,$cookieStore,$window){
 

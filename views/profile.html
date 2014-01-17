@@ -1,0 +1,74 @@
+<header class="line line-small grey" style="margin-bottom: 20px;">
+    Information
+    <button class="btn white" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
+        <i class="icon-edit"></i>
+        Edit
+    </button>
+    <button class="btn blue" ng-show="profile.infoEdit" ng-click="infoEditToggle();">
+        <i class="icon-check"></i>
+        Save
+    </button>
+</header>
+<div class="row-fluid">
+    <div class="span6">
+        <label>
+            First Name
+            <span class="data" ng-hide="profile.infoEdit">{{profile.first_name}}</span>
+            <div class="row-fluid" ng-show="profile.infoEdit">
+                <input type="text" class="span12" ng-model="profile.first_name">
+            </div>
+        </label>
+        <label>
+            Last Name
+            <span class="data" ng-hide="profile.infoEdit">{{profile.last_name}}</span>
+            <div class="row-fluid" ng-show="profile.infoEdit">
+                <input type="text" class="span12" ng-model="profile.last_name">
+            </div>
+        </label>
+        <label>
+            Phone
+            <span class="data" ng-hide="profile.infoEdit">{{profile.phone | tel}}</span>
+            <div class="row-fluid" ng-show="profile.infoEdit">
+                <input type="tel" class="span12" ng-model="profile.phone">
+            </div>
+        </label>
+
+    </div>
+    <div class="span6">
+        <label>
+            Address
+            <span class="data" ng-hide="profile.infoEdit">{{profile.address}}</span>
+            <div class="row-fluid" ng-show="profile.infoEdit">
+                <input type="text" class="span12" ng-model="profile.address">
+            </div>
+        </label>
+        <label>
+            City
+            <span class="data" ng-hide="profile.infoEdit">{{profile.city}}</span>
+            <div class="row-fluid" ng-show="profile.infoEdit">
+                <input type="text" class="span12" ng-model="profile.city">
+            </div>
+        </label>
+        <div class="row-fluid">
+            <div class="span6">
+                <label>
+                    State
+                    <span class="data" ng-hide="profile.infoEdit">{{profile.state}}</span>
+                    <div class="row-fluid" ng-show="profile.infoEdit">
+                        <select ng-model="profile.state" ng-options="o.value as o.name for o in states" class="span12"></select>
+                    </div>
+                </label>
+            </div>
+            <div class="span6">
+                <label>
+                    Zip
+                    <span class="data" ng-hide="profile.infoEdit">{{profile.zip}}</span>
+                    <div class="row-fluid" ng-show="profile.infoEdit">
+                        <input type="text" class="span12" ng-model="profile.zip">
+                    </div>
+                </label>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
