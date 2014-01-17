@@ -45,6 +45,8 @@ myApp.controller(
     }
 );
 
+
+
 myApp.controller(
     'BusinessPlanController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
@@ -56,6 +58,11 @@ myApp.controller(
         $scope.init();
 
 
+        $scope.addItem = function(){
+            $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
+                $scope.plan.suppliesneeded = response.data;
+            })
+        }
         $scope.finishplan = function(){
             $scope.submitted = true;
         };
@@ -155,7 +162,7 @@ myApp.controller(
 
 myApp.controller(
     'QuizController',
-    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http,$state){
         $scope.init = function(){
 
         }
@@ -191,6 +198,8 @@ myApp.controller(
                         }
                     }).success(function(){
                             userFactory.getUserInfo(false);
+
+                            $state.transitionTo("lessons");
                         });
                 }
             }

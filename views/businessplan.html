@@ -1,5 +1,5 @@
 <form name="businessplan" >
-    <button ng-click="finishplan()">Finish</button>
+
     <p>Describe your business.</p>
     <input required name="description" id="description" type="text" data-ng-model="plan.description" />
     <span class="required" ng-show="businessplan.description.$error.required && (businessplan.description.$dirty || submitted)">This field is required</span>
@@ -21,11 +21,17 @@
 
 
         <p>What supplies do you need?</p>
-        <input type="text" ng-required="plan.type == 'service'" name="suppliesneeded" data-ng-model="plan.suppliesneeded"/>
+        <li ng-repeat="supplies in plan.suppliesneeded">
+            <label>Name <input type="text"  data-ng-model="supplies.name"/></label>
+            <label>Cost <input type="text"  data-ng-model="supplies.cost"/></label>
+        </li>
+        <label>Name <input type="text"  data-ng-model="newsupply.name"/></label>
+        <label>Cost <input type="text"  data-ng-model="newsupply.cost"/></label>
+        <button ng-click="addItem()">+</button>
         <span class="required" ng-show="businessplan.suppliesneeded.$error.required && (businessplan.suppliesneeded.$dirty || submitted)">This field is required</span>
 
 
-        <p>Who's going to pay for this service?</p>
+        <p>Who needs this service?</p>
         <input type="text" data-ng-model="plan.customer" ng-required="plan.type == 'service'" name="customer"/>
         <span class="required" ng-show="businessplan.customer.$error.required && (businessplan.customer.$dirty || submitted)">This field is required</span>
     </div>
@@ -40,7 +46,7 @@
     </div>
 
 
-
+    <button ng-click="finishplan()">Finish</button>
 
 
 </form>
