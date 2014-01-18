@@ -397,6 +397,30 @@ p.non-profit {
   float:right;
 }
 
+.start-now {
+  width:100%;
+  background: #f16521;
+  padding: 110px 0px;
+  margin: 0px;
+  text-align: center;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.start-now .nav-btn{
+  text-decoration: none;
+  border-radius: 0px;
+  padding: 20px 50px;
+}
+
+.start-now a {
+  text-decoration: none;
+}
+
+.start-now p {
+  margin-top: 50px;
+}
+
 .lesson-page {
   width:100%;
   height: auto;
