@@ -164,7 +164,8 @@ myApp.controller(
                 "activities":activities,
                 "customer":customer,
                 "summary":summary,
-                "value":value
+                "value":value,
+                "name":$scope.plan.name
             }).success(function(response){
                     $location.path("projectpage/"+response.data.id);
                 });

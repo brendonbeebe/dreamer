@@ -95,6 +95,7 @@ class BusinessPlanController extends ERestController
         }
 
         $existingPlan->activities = $data['activities'];
+        $existingPlan->name = $data['name'];
         $existingPlan->customer= $data['customer'];
         $existingPlan->summary= $data['summary'];
         $existingPlan->value= $data['value'];

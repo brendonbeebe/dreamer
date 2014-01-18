@@ -7,8 +7,12 @@
     <div class="business-plan-right">
         <form name="businessplan" >
 
+            <p>Business Name:</p>
+            <input type="text" data-ng-model="plan.name"  name="name"/>
+            <span class="required" ng-show="businessplan.name.$error.required && (businessplan.name.$dirty || submitted)">This field is required</span>
+
             <p>Describe your business idea:</p>
-            <textarea required name="description" id="description" type="text" data-ng-model="plan.description"></textarea> 
+            <textarea required name="description" id="description" type="text" data-ng-model="plan.description"></textarea>
             <span class="required" ng-show="businessplan.description.$error.required && (businessplan.description.$dirty || submitted)">This field is required</span>
 
             <p>Why do you want to start a business?</p>
