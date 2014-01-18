@@ -54,10 +54,10 @@ return array(
 
         ),
         'db'=>array(
-            'connectionString' => 'mysql:host=127.0.0.1;dbname=kiddreamer',
+            'connectionString' => 'mysql:host=127.0.0.1;dbname=young_kiddreamer',
             'emulatePrepare' => true,
-            'username' => 'root',
-            'password' => '',
+            'username' => 'young_admin',
+            'password' => 'adminadmin',
             'charset' => 'utf8',
         ),
         'bootstrap'=>array(
