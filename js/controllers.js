@@ -51,6 +51,9 @@ myApp.controller(
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $anchorScroll){
         $scope.init = function(){
             $scope.scrollToAbout();
+            $http.get("yii/BusinessPlan/GetCounter").success(function(response){
+                $scope.counter = response.data.sum;
+            });
         }
 
         $scope.scrollToAbout = function() {
@@ -67,10 +70,8 @@ myApp.controller(
     'MainController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $anchorScroll){
         $scope.init = function(){
-            console.log("ddd");
             $http.get("yii/BusinessPlan/GetCounter").success(function(response){
                 $scope.counter = response.data.sum;
-                console.log($scope.counter);
             });
         }
 
