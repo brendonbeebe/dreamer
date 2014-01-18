@@ -78,8 +78,6 @@ var module = angular.module('myApp.directives', []).
             if (attrs.windowsize == '') {
                 element.append('' +
                     '<div class="copyright">' +
-                    '<img src="resources/img/persogenics-logo-large.png">' +
-                    '<div>© ' + yr + ' | Made with <span style="color:#FA3257">?</span> in Provo, UT</div>' +
                     '</div>')
             }
         }
