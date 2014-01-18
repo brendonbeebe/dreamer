@@ -25,7 +25,7 @@
 		<a class="btn green" href="#getOrgImage" colorbox="#getOrgImage" colormebox>Support this Business<p>$1 Minimum</p></a>
 		</center>
 		<hr>
-		<img ng-src="files/{{user.profile_pic}}">
+		<img ng-src="files/{{user.profile_pic}}" fallback-src="resources/img/default-img.jpg">
 		<p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
 	</div>
 </div>
@@ -36,7 +36,7 @@
     <div class="lightbox" id="getOrgImage">
         <div class="error">{{error}}</div>
         <form>
-            <img height="100px" ng-src="files/{{user.profile_pic}}">
+            <img height="100px" ng-src="files/{{user.profile_pic}}" fallback-src="resources/img/default-img.jpg">
             <p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
 
 

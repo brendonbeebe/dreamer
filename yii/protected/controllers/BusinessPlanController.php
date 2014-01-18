@@ -17,7 +17,10 @@ class BusinessPlanController extends ERestController
     {
 
         return array(
-
+            array('allow',
+                'actions'=>array('GetAll'),
+                'users'=>array('*'),
+            ),
             array('allow',
                 'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan','GetAll','Donate'),
                 'users'=>array('@'),
