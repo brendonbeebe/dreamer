@@ -69,6 +69,29 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         templateUrl: "views/home.html"
                     }
                 }
+            }).state('about', {
+                url: "/about", // root route
+                views: {
+                    "header_view":{
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
+                    },
+                    "main_view": {
+                        templateUrl: "views/home.html",
+                        controller: 'AboutController'
+                    }
+                }
+            }).state('donate', {
+                url: "/donate", // root route
+                views: {
+                    "header_view":{
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
+                    },
+                    "main_view": {
+                        templateUrl: "views/donate.html"
+                    }
+                }
             }).state('projects', {
                 url: "/projects", // root route
                 views: {

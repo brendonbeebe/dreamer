@@ -47,6 +47,35 @@ myApp.controller(
 
 
 myApp.controller(
+    'AboutController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $anchorScroll){
+        $scope.init = function(){
+            $scope.scrollToAbout();
+        }
+
+        $scope.scrollToAbout = function() {
+            $location.hash('about_page');
+            $anchorScroll();
+        }
+
+        $scope.init();
+    }
+);
+
+
+myApp.controller(
+    'DonateController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
+        $scope.init = function(){
+        }
+
+
+        $scope.init();
+    }
+);
+
+
+myApp.controller(
     'RegisterController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http){
         $scope.init = function(){
