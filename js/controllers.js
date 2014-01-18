@@ -125,7 +125,7 @@ myApp.controller(
             $scope.plan = {};
             $scope.plan.suppliesneeded = [];
 
-            $http.get("yii/businessplan/GetBusinessPlan").success(function(response){
+            $http.get("yii/BusinessPlan/GetBusinessPlan").success(function(response){
                     $scope.plan = response.data;
                     if(response.data != undefined){
                         $location.path("projectpage/"+response.data.id)
@@ -220,7 +220,7 @@ myApp.controller(
 
         $scope.init = function(){
 
-            $http.get("yii/businessplan/getplan",{
+            $http.get("yii/BusinessPlan/getplan",{
                 params:{
                     id:$stateParams.id
                 }
@@ -239,7 +239,7 @@ myApp.controller(
         }
 
         $scope.donate = function(){
-            $http.get("yii/businessplan/donate",{
+            $http.get("yii/BusinessPlan/donate",{
                 params:{
                     ammount:$scope.donate.ammount,
                     project:$scope.plan.id
@@ -276,7 +276,7 @@ myApp.controller(
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state,$stateParams){
         $scope.init = function(){
 
-            $http.get("yii/businessplan/getall").success(function(response){
+            $http.get("yii/BusinessPlan/getall").success(function(response){
                     $scope.plans = response.data;
                 });
 
