@@ -36,15 +36,17 @@
     <div class="lightbox" id="getOrgImage">
         <div class="error">{{error}}</div>
         <form>
-            <img height="100px" ng-src="files/{{user.profile_pic}}" fallback-src="resources/img/default-img.jpg">
-            <p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
+        	<div class="give-funds">
+	            <img ng-src="files/{{user.profile_pic}}" fallback-src="resources/img/default-img.jpg">
+	            <p class="project-user">Support {{user.first_name}} {{user.last_name}}</p>
+            </div>
 
+            <div class="money-amount">
+            	 <span>$</span><input id="moenyselect" type="number" min="1" value="1" ng-model="donate.ammount" required/>
+            </div>
 
-            Support {{user.first_name}} with
-            $<input type="number" min="1" value="1" ng-model="donate.ammount" required/>
-
-            <button type="button" class="btn pull-right" ng-click="donate()">Support</button>
-            <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">
+            <button type="button" class="btn green pull-right" ng-click="donate()">Support</button>
+            <button type="button" class="btn orange pull-right" closelightbox data-ng-click="clearQueue()">
                 Cancel
             </button>
         </form>
