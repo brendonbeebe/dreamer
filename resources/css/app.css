@@ -355,7 +355,7 @@ p.non-profit {
 .curriculum {
   width:100%;
   background: #F7F5F2;
-  padding: 40px 0px;
+  padding: 90px 0px;
   margin: 0px;
 }
 
@@ -374,9 +374,27 @@ p.non-profit {
   font-size: 100%;
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  width: 50%;
+  width: 90%;
   margin: 30px auto;
   text-align: left;
+}
+
+.curr-left {
+  width:30%;
+  float:left;
+}
+
+.curr-left i {
+  color:#f16521;
+  font-size: 1200%;
+  width:100%;
+  margin: 0px auto;
+  text-align: center;
+}
+
+.curr-right {
+  width:70%;
+  float:right;
 }
 
 .lesson-page {
