@@ -323,6 +323,7 @@ class UserController extends ERestController
                 "city"=>$userModel->city,
                 "state"=>$userModel->state,
                 "zip"=>$userModel->zip,
+                "budget"=>$userModel->budget,
                 "lessonsComplete"=>$userModel->lessonsCompletes,
                 "profile_pic"=>$userModel->profile_pic,
             );

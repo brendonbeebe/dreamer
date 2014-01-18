@@ -21,9 +21,13 @@
             <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
                 <span>3</span>
             </button>
-            <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
+            <button class="profile-lesson-tile complete" ng-show="plan.id != undefined" ng-click="gotoproject()">
                 <span>Project</span>
             </button>
+            <button class="profile-lesson-tile complete"  ng-show="everythingCompleted && plan.id == undefined" ng-click="navigate('businessplan')">
+                <span>Project</span>
+            </button>
+
 
         </div>
         <div class="clear">
@@ -31,7 +35,7 @@
     </div>
 </div>
     
-    <div class="alert-text">
+    <div class="alert-text" ng-show="alertText != undefined && alertText != ''">
         <p class="fa fa-thumbs-o-up"> {{alertText}}</p>
     </div>
 

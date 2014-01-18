@@ -238,7 +238,21 @@ myApp.controller(
 
         }
 
-
+        $scope.donate = function(){
+            $http.get("yii/businessplan/donate",{
+                params:{
+                    ammount:$scope.donate.ammount,
+                    project:$scope.plan.id
+                }
+            }).success(function(response){
+                    $.colorbox.close();
+                    $scope.init();
+                    $scope.error = "";
+                    $scope.donate.ammount = 0;
+                }).error(function(response){
+                    $scope.error =response;
+                });
+        }
         $scope.init();
         $scope.addItem = function(){
             $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
@@ -345,7 +359,9 @@ myApp.controller(
             }
         };
 
-
+        $scope.gotoproject = function(){
+            $location.path("projectpage/"+$scope.plan.id);
+        }
         $scope.init = function(){
             $scope.$watch( function () { return userFactory.user; }, function (data) {
                 $scope.profile = data;
@@ -366,6 +382,8 @@ myApp.controller(
                 $scope.lessonsCompleted[value.lesson_id] = value;
             });
         }
+
+
 
 
 

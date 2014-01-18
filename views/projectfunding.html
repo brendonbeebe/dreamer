@@ -22,10 +22,31 @@
 		<span>{{plan.daysSince}}</span>
 		<p>Days on Young Starter</p>
 		<center>
-		<a class="btn green">Support this Business<p>$1 Minimum</p></a>
+		<a class="btn green" href="#getOrgImage" colorbox="#getOrgImage" colormebox>Support this Business<p>$1 Minimum</p></a>
 		</center>
 		<hr>
 		<img ng-src="files/{{user.profile_pic}}">
 		<p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
 	</div>
+</div>
+
+
+
+<div class="lightbox-wrapper">
+    <div class="lightbox" id="getOrgImage">
+        <div class="error">{{error}}</div>
+        <form>
+            <img height="100px" ng-src="files/{{user.profile_pic}}">
+            <p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
+
+
+            Support {{user.first_name}} with
+            $<input type="number" min="1" value="1" ng-model="donate.ammount" required/>
+
+            <button type="button" class="btn pull-right" ng-click="donate()">Support</button>
+            <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">
+                Cancel
+            </button>
+        </form>
+    </div>
 </div>

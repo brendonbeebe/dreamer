@@ -19,7 +19,7 @@ class BusinessPlanController extends ERestController
         return array(
 
             array('allow',
-                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan','GetAll'),
+                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan','GetAll','Donate'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -63,6 +63,32 @@ class BusinessPlanController extends ERestController
             ));
         }
 
+    }
+
+    public function ActionDonate(){
+        $ammount = Yii::app()->request->getParam('ammount');
+        $project_id = Yii::app()->request->getParam('project');
+
+        $userModel = User::model()->findByPk(Yii::app()->user->id);
+
+        $userModel->budget = $userModel->budget - $ammount;
+        if($userModel->budget > 0){
+            $projectModel = BusinessPlan::model()->findByPk($project_id);
+            $projectModel->supporters = $projectModel->supporters+1;
+            $projectModel->raised = $projectModel->raised + $ammount;
+            $projectModel->save();
+
+            $userModel->save();
+        } else {
+            throw new CHttpException(500,'You don\'t have enough money! Try less than '.($userModel->budget+$ammount).'.');
+        }
+
+
+
+
+        $this->renderJson(array(
+            'success'=>true
+        ));
     }
 
     public function ActionGetPlan(){
