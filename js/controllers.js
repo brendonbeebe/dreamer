@@ -165,8 +165,8 @@ myApp.controller(
                 "customer":customer,
                 "summary":summary,
                 "value":value
-            }).success(function(){
-
+            }).success(function(response){
+                    $location.path("projectpage/"+response.data.id);
                 });
         };
 

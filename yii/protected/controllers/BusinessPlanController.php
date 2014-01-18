@@ -102,7 +102,8 @@ class BusinessPlanController extends ERestController
 
         if($existingPlan->save()){
             $this->renderJson(array(
-                'success'=>true
+                'success'=>true,
+                'data'=>$existingPlan
             ));
         } else {
             $this->ThrowError($existingPlan->getErrors());
