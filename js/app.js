@@ -80,6 +80,18 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         templateUrl: "views/projects.html"
                     }
                 }
+            }).state('projectpage', {
+                url: "/projectpage/:id", // root route
+                views: {
+                    "header_view":{
+                        templateUrl: "views/header.html",
+                        controller: "HeaderController"
+                    },
+                    "main_view": {
+                        templateUrl: "views/projectfunding.html",
+                        controller: "ProjectPageController"
+                    }
+                }
             }).state('index', {
                 url: "/", // root route
                 views: {

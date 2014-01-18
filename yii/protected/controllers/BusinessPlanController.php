@@ -19,7 +19,7 @@ class BusinessPlanController extends ERestController
         return array(
 
             array('allow',
-                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan'),
+                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -35,6 +35,21 @@ class BusinessPlanController extends ERestController
             $existingPlan = new BusinessPlan;
             $existingPlan->user_id = $userModel->id;
             $existingPlan->save();
+        }
+    }
+
+    public function ActionGetPlan(){
+
+        $planId = Yii::app()->request->getParam('id');
+        $planModel = BusinessPlan::model()->find("id = :id",array(":id"=>$planId));
+        if(!empty($planModel)){
+            $userModel = User::model()->findByPk($planModel->user_id);
+
+            $this->renderJson(array(
+                'success'=>true,
+                'data'=>$planModel,
+                'user'=>$userModel
+            ));
         }
     }
 
