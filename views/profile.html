@@ -1,7 +1,7 @@
 <div class="employee-info">
     <div class="container">
         <img ng-show="profile.profile_pic != null" ng-src="files/{{profile.profile_pic}}">
-        <img ng-show="profile.profile_pic == null" src="resources/img/default-company-img.jpg">
+        <img ng-show="profile.profile_pic == null" src="resources/img/default-img.jpg">
         <div class="info">
             <div class="name">{{profile.first_name}} {{profile.last_name}}</div>
             <div class="position">
@@ -170,7 +170,7 @@
                 </table>
 
                 <div class="controls">
-                    <button type="button" class="btn blue cancel pull-right" closelightbox>
+                    <button type="button" class="btn blue cancel pull-right" closelightbox ng-click="reloadUser();">
                         <span>Done</span>
                     </button>
                     <button type="button" class="btn pull-right" closelightbox data-ng-click="clearQueue()">

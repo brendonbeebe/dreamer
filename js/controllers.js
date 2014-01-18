@@ -383,10 +383,9 @@ myApp.controller(
             });
         }
 
-
-
-
-
+        $scope.reloadUser = function(){
+            userFactory.reloadUser();
+        }
 
 
         $scope.finishplan = function(){

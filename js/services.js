@@ -18,7 +18,6 @@ myApp.factory('applicationFactory',function(){
 myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangular,$location,$rootScope){
     var factory = {};
     var loggedIn = false;
-    var applicantLoggedIn = false;
     var redirectTo;
 
     var flash = "";
@@ -95,6 +94,10 @@ myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangula
         loggedIn = true;
     }
 
+    factory.reloadUser = function(){
+        factory.getUserInfo();
+    }
+
     factory.getUserInfo = function(redirect){
         $http({
             url: "yii/user/userinfo",
@@ -133,9 +136,6 @@ myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangula
 
     factory.getUserId = function(){
         return factory.user.id;
-    }
-    factory.isPARequired = function(){
-        return factory.user.assessment_required;
     }
 
     //factory.logIn();
