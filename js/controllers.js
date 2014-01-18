@@ -167,7 +167,43 @@ myApp.controller(
 
 
     }
-); 
+);
+myApp.controller(
+    'ProjectPageController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state,$stateParams){
+        $scope.init = function(){
+
+            $http.get("yii/businessplan/getplan",{
+                params:{
+                    id:$stateParams.id
+                }
+            }).success(function(response){
+                    $scope.plan = response.data;
+                    $scope.user = response.user;
+                })
+
+
+        }
+
+
+        $scope.init();
+        $scope.addItem = function(){
+            $http.post('yii/BusinessPlan/AddItem',$scope.newsupply).success(function(response){
+                $scope.plan.suppliesneeded = response.data;
+            })
+        }
+        $scope.finishplan = function(){
+            $scope.submitted = true;
+        };
+
+        $scope.logout = function() {
+            userFactory.logOut();
+            $state.transitionTo('index');
+        };
+
+
+    }
+);
 
 
 myApp.controller(
