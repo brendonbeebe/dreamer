@@ -45,13 +45,16 @@ class BusinessPlanController extends ERestController
 
         $returnObject = array();
         foreach($allProjects as $project){
-            $tempProject = array();
-            $tempProject['picture'] = $project->user->profile_pic;
-            $tempProject['name'] = $project->user->first_name . " " .$project->user->last_name;
-            $tempProject['raised'] = $project->raised;
-            $tempProject['business_name'] = $project->name;
-            $tempProject['id'] = $project->id;
-            $returnObject[] = $tempProject;
+            if(!empty($project->user)){
+                $tempProject = array();
+                $tempProject['picture'] = $project->user->profile_pic;
+                $tempProject['name'] = $project->user->first_name . " " .$project->user->last_name;
+                $tempProject['raised'] = $project->raised;
+                $tempProject['business_name'] = $project->name;
+                $tempProject['id'] = $project->id;
+                $returnObject[] = $tempProject;
+            }
+
         }
 
         $this->renderJson(array(
