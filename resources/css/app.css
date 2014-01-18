@@ -254,7 +254,7 @@ p.non-profit {
   text-transform: uppercase;
   font-family: 'Montserrat', sans-serif;
   font-weight: 800;
-  margin: 0px;
+  margin: 0px 0px 20px 0px;
   display: block;
   text-align: center;
 }
@@ -268,10 +268,11 @@ p.non-profit {
 }
 
 .how .thirds i {
-  font-size: 700%;
+  font-size: 400%;
   display: inline-block;
-  margin: 0px auto 100px auto;
+  margin: 0px auto 60px auto;
   width:100%;
+  color:#42b498;
 }
 
 .how .thirds span {
@@ -565,4 +566,107 @@ p.non-profit {
   display: inline-block;
   color:#fff;
   font-size: 130%;
+}
+
+.funding-page {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  background: #f7f5f2;
+  padding: 100px 0px 20px 0px;
+}
+
+.funding-page h1 {
+  font-weight: 800;
+  color: #808080;
+  font-size: 24px;
+  text-align: center;
+}
+
+.funding-page p {
+  font-weight: 400;
+  color: #808080;
+  font-size: 100%;
+  text-align: center;
+}
+
+.funding-page img {
+  width:50px;
+}
+
+.container-funding {
+  width: 900px;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 0;
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  vertical-align: baseline;
+}
+
+.funding-left {
+  margin:30px 0px;
+  width:68%;
+  float: left;
+  padding: 20px;
+  border: 1px solid #eee;
+  box-sizing:border-box;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.funding-left h1 {
+  color:#eee;
+  text-align: center;
+}
+
+.funding-left b {
+  margin-top: 40px;
+  display: block;
+}
+
+.funding-right {
+  width:30%;
+  float: right;
+  border: 1px solid #eee;
+  padding: 10px;
+  box-sizing:border-box;
+  margin:30px 0px;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+.funding-right span {
+  font-size: 200%;
+  font-weight: 800;
+  color:#f16521;
+}
+
+.funding-right a {
+  margin:20px auto;
+  height: auto;
+  font-size: 120%;
+}
+
+.funding-right a p {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+  font-size: 80%;
+  margin: 0px auto;
+  height: 20px;
+  padding: 0px;
+  line-height: 10px;
+  text-align: center;
+}
+
+.project-user {
+  margin-top: 30px;
+  float:right;
+  color:#eee;
+}
+
+.funding-right img {
+  margin: 20px 0px 0px 20px;
+  width: 50px;
+  float: right;
 }
