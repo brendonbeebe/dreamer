@@ -6,7 +6,9 @@
 
     <div class="project" ng-repeat="project in plans"  ng-mouseover="project.show=true" ng-mouseout="project.show =false">
 
-        <a href="#/projectpage/{{project.id}}"><img ng-src="files/{{project.picture}}" />
+        <a href="#/projectpage/{{project.id}}">
+            <img ng-src="files/{{project.picture}}" ng-show="project.picture != null"/>
+            <img ng-show="profile.profile_pic == null" src="resources/img/default-img.jpg">
         <div class="project-hover" ng-show="project.show">
             <span>
                 <p>{{project.name}}</p>
