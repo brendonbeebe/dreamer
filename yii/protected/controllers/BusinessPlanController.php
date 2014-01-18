@@ -72,6 +72,8 @@ class BusinessPlanController extends ERestController
         if(!empty($planModel)){
             $userModel = User::model()->findByPk($planModel->user_id);
 
+
+
             $this->renderJson(array(
                 'success'=>true,
                 'data'=>$planModel,
@@ -94,6 +96,8 @@ class BusinessPlanController extends ERestController
             $existingPlan->save();
         }
 
+        $existingPlan->supporters = 0;
+        $existingPlan->raised = 0;
         $existingPlan->activities = $data['activities'];
         $existingPlan->name = $data['name'];
         $existingPlan->customer= $data['customer'];

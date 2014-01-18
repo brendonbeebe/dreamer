@@ -1,5 +1,5 @@
 <div class="funding-page">
-	<h1>{{plan.title}}</h1>
+	<h1>{{plan.name}}</h1>
 	<p>by {{user.first_name}} {{user.last_name}}</p>
 </div>
 <div class="container-funding">
@@ -15,11 +15,11 @@
 		<p>{{plan.value}}</p>
 	</div>
 	<div class="funding-right">
-		<span>6</span>
+		<span>{{plan.supporters}}</span>
 		<p>Supporters</p>
 		<span>${{plan.raised}}</span>
 		<p>Raised</p>
-		<span>1</span>
+		<span>{{plan.daysSince}}</span>
 		<p>Days on Young Starter</p>
 		<center>
 		<a class="btn green">Support this Business<p>$1 Minimum</p></a>

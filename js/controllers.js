@@ -209,6 +209,15 @@ myApp.controller(
 myApp.controller(
     'ProjectPageController',
     function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state,$stateParams){
+        function stringToDate(s) {
+            var dateParts = s.split(' ')[0].split('-');
+            var timeParts = s.split(' ')[1].split(':');
+            var d = new Date(dateParts[0], --dateParts[1], dateParts[2]);
+            d.setHours(timeParts[0], timeParts[1], timeParts[2])
+
+            return d
+        }
+
         $scope.init = function(){
 
             $http.get("yii/businessplan/getplan",{
@@ -216,7 +225,13 @@ myApp.controller(
                     id:$stateParams.id
                 }
             }).success(function(response){
+                    var startDate = stringToDate(response.data.start_date);
+                    var todaysDate = new Date().getTime();
+                    var days = Math.round((todaysDate - startDate) / 86400000);
+
+
                     $scope.plan = response.data;
+                    $scope.plan.daysSince = days;
                     $scope.user = response.user;
                 })
 
