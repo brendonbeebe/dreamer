@@ -8,30 +8,37 @@
                 <a href="#getOrgImage" colorbox="#getOrgImage" colormebox>Change your Profile Image</a>
             </div>
         </div>
-        <div class="profile-lesson">
+        <div class="clear"></div>
+    </div>
+</div>
+<div class="profile-lesson">
+    <div class="container">
+            <h1>Your Lesson Progress</h1>
+            <hr>
             <div class="lesson-title">
-                Your Lesson Progress
+                This is your account page. To the right you can find your lesson progress. The point of Young Starters is to learn great business principles and apply them to your very own business. There are 3 lessons to complete. Once you have finished all three lessons you will be able to work on your very own project, which is your business idea.
+                <br>
+                <br>
+                Click on a lesson to start learning.
             </div>
-            <button class="profile-lesson-tile" ng-disabled="!isCurrent(1)" ng-class='{current: isCurrent(1), complete: isComplete(1), incomplete: isIncomplete(1)}' ng-click="navigate('lessons.first')">
-                <span>1</span>
-            </button>
-            <button class="profile-lesson-tile" ng-disabled="!isCurrent(2)" ng-class='{current: isCurrent(2), complete: isComplete(2), incomplete: isIncomplete(2)}' ng-click="navigate('lessons.second')">
-                <span>2</span>
-            </button>
-            <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
-                <span>3</span>
-            </button>
-            <button class="profile-lesson-tile complete" ng-show="plan.id != undefined" ng-click="gotoproject()">
-                <span>Project</span>
-            </button>
-            <button class="profile-lesson-tile complete"  ng-show="everythingCompleted && plan.id == undefined" ng-click="navigate('businessplan')">
-                <span>Project</span>
-            </button>
-
-
-        </div>
-        <div class="clear">
-        </div>
+            <div class="lesson-tiles">
+                <button class="profile-lesson-tile" ng-disabled="!isCurrent(1)" ng-class='{current: isCurrent(1), complete: isComplete(1), incomplete: isIncomplete(1)}' ng-click="navigate('lessons.first')">
+                    <span>1</span>
+                </button>
+                <button class="profile-lesson-tile" ng-disabled="!isCurrent(2)" ng-class='{current: isCurrent(2), complete: isComplete(2), incomplete: isIncomplete(2)}' ng-click="navigate('lessons.second')">
+                    <span>2</span>
+                </button>
+                <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
+                    <span>3</span>
+                </button>
+                <button class="profile-lesson-tile complete" ng-show="plan.id != undefined" ng-click="gotoproject()">
+                    <span>Project</span>
+                </button>
+                <button class="profile-lesson-tile complete"  ng-show="everythingCompleted && plan.id == undefined" ng-click="navigate('businessplan')">
+                    <span>Project</span>
+                </button>
+            </div>
+        <div class="clear"></div>
     </div>
 </div>
     
@@ -42,8 +49,10 @@
 
 
 <div class="container edit-info">
-    <header class="line line-small grey" style="margin-bottom: 20px;">
-        Information
+    <h1>Your Profile Information</h1>
+    <hr>
+    <br>
+    <br>
         <button class="btn orange" ng-hide="profile.infoEdit" ng-click="infoEditToggle();">
             <i class="fa fa-edit"></i>
             Edit

@@ -385,17 +385,55 @@ p.non-profit {
 .edit-info {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
+  padding: 20px 0px;
+}
+
+.edit-info h1 {
+  margin: 0px auto 20px auto;
+  text-align: center;
+  font-size: 150%;
+  color:#ddd;
+}
+
+.edit-info hr {
+  background:#ddd;
+}
+
+.edit-info .btn {
+  margin-top:-97px;
+  position: absolute;
 }
 
 .profile-lesson {
-  float:right;
-  padding: 0px;
+  background: #f7f5f2;
+  padding: 20px 0px;
   height:auto;
+  width:100%;
+}
+
+.profile-lesson h1 {
+  margin: 0px auto 20px auto;
+  text-align: center;
+  font-size: 150%;
+  color:#ddd;
+}
+
+.profile-lesson hr {
+  background:#ddd;
 }
 
 .lesson-title {
-  height: 100px;
+  margin-top: 15px;
   float:left;
+  font-weight: 400;
+  color: #808080;
+  font-size: 100%;
+  width: 50%;
+}
+
+.lesson-tiles {
+  margin-top: 15px;
+  float:right;
   font-weight: 800;
   color: #808080;
   font-size: 100%;
@@ -480,8 +518,9 @@ p.non-profit {
 }
 
 .quizzes {
-  width:100%;
+  width:90%;
   padding-top: 30px;
+  margin: 30px auto;
 }
 
 .submit-quiz {
