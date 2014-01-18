@@ -43,7 +43,7 @@ class BusinessPlanController extends ERestController
 
 
     public function ActionGetAll(){
-        $allProjects = BusinessPlan::model()->findAll("1");
+        $allProjects = BusinessPlan::model()->findAll(array('order'=>'id DESC'));
 
         $returnObject = array();
         foreach($allProjects as $project){
