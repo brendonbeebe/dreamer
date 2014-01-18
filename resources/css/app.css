@@ -553,13 +553,16 @@ p.non-profit {
 
 .project-hover {
   width:100%;
-  margin-top: -50px;
+  margin-top: -226px;
 }
 
 .project-hover span {
   width:100%;
   margin:0px;
+  height:222px;
   text-align: center;
-  background: rgba(0,0,0,0.2);
-  
+  background: rgba(0,0,0,0.6);
+  display: inline-block;
+  color:#fff;
+  font-size: 130%;
 }
