@@ -52,10 +52,11 @@ class BusinessPlan extends CActiveRecord
 			array('user_id, supporters, raised', 'numerical', 'integerOnly'=>true),
 			array('name', 'length', 'max'=>50),
 			array('summary, type, value, customer, activities', 'length', 'max'=>500),
-			array('start_date', 'safe'),
+			array('start_date,total', 'safe'),
+
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, user_id, name, summary, type, value, customer, activities, start_date, supporters, raised', 'safe', 'on'=>'search'),
+			array('id, user_id, name, summary, type, value, customer, activities, start_date, supporters, raised,total', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -69,6 +70,10 @@ class BusinessPlan extends CActiveRecord
 		return array(
 			'businessItems' => array(self::HAS_MANY, 'BusinessItems', 'business_id'),
 			'user' => array(self::BELONGS_TO, 'User', 'user_id'),
+            'sum' => array(self::STAT, 'BusinessPlan', 'id',
+                'select'=> 'SUM(raised)',
+                'condition'=>'1 = true'),
+
 		);
 	}
 

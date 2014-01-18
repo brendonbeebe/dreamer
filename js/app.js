@@ -66,7 +66,9 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         controller: "HeaderController"
                     },
                     "main_view": {
-                        templateUrl: "views/home.html"
+                        templateUrl: "views/home.html",
+
+                        controller: "MainController"
                     }
                 }
             }).state('about', {
@@ -125,7 +127,8 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         controller: "HeaderController"
                     },
                     "main_view": {
-                        templateUrl: "views/home.html"
+                        templateUrl: "views/home.html",
+                        controller: "MainController"
                     }
                 }
             }).state('login', {

@@ -32,10 +32,12 @@ class BusinessPlanController extends ERestController
     }
 
     public function ActionGetCounter(){
-        $var_sum = BusinessPlan::model()->findBySql('select SUM(`raised`) as `total` from business_plan', array());
+
+        $list= Yii::app()->db->createCommand('SELECT SUM( raised ) AS sum FROM business_plan WHERE 1 = 1')->queryRow();
+
         $this->renderJson(array(
             'success'=>true,
-            'data'=>$var_sum->total
+            'data'=>$list
         ));
     }
 
