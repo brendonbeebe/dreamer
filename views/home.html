@@ -101,11 +101,10 @@ $(document).ready(function() {
         var ele = $('.jcarousel ul');
         var left = parseInt(ele.css('left'));
 
-        console.log(left);
         if (delta > 0) {
 
             if ( left < 0 ) {
-                var newLeft = left + 50;
+                var newLeft = left + 75;
 
                 if (newLeft > 0) { newLeft = 0; }
                 ele.css('left', newLeft + 'px');
@@ -113,7 +112,7 @@ $(document).ready(function() {
 
 
         } else {
-            var newLeft = left - 50;
+            var newLeft = left - 75;
             if (newLeft < -5744) { newLeft = -5744; }
             ele.css('left', newLeft + 'px');
         }
