@@ -79,33 +79,45 @@
 </div>
 
 
-<div id="slider" class="barousel">
-    
-    <div class="barousel_image">
-        <!-- image 1 -->
-        <img src="resources/img/ys-logo.png" alt="" class="default" />
-        <!-- image 2 -->
-        <img src="resources/img/ys-logo.png" alt="" />
-        <!-- image xx -->
-        <img src="resources/img/ys-logo.png" alt="" />
-    </div>
-    
-    <div class="barousel_content">
-        <!-- content 1 -->
-        <div class="default">
-            Slide 1
-        </div>
-        <!-- content 2 -->
-        <div>
-            Slide 2
-        </div>
-        <!-- content xx -->
-        <div>
-            Slide 3
-        </div>
-    </div>
-    
-    <div class="barousel_nav">
-    </div>
-    
+
+<div class="jcarousel">
+    <ul>
+        <li><img src="resources/img/Reason-1.jpg" /></li>
+        <li><img src="resources/img/Reason-2.jpg" /></li>
+        <li><img src="resources/img/Reason-3.jpg" /></li>
+        <li><img src="resources/img/Reason-4.jpg" /></li>
+        <li><img src="resources/img/Reason-5.jpg" /></li>
+        <li><img src="resources/img/Reason-6.jpg" /></li>
+        <li><img src="resources/img/Reason-7.jpg" /></li>
+        <li><img src="resources/img/Reason-8.jpg" /></li>
+        <li><img src="resources/img/Reason-9.jpg" /></li>
+        <li><img src="resources/img/Reason-10.jpg" /></li>
+    </ul>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.jcarousel').bind('mousewheel', function(event, delta) {
+        var ele = $('.jcarousel ul');
+        var left = parseInt(ele.css('left'));
+
+        console.log(left);
+        if (delta > 0) {
+
+            if ( left < 0 ) {
+                var newLeft = left + 50;
+
+                if (newLeft > 0) { newLeft = 0; }
+                ele.css('left', newLeft + 'px');
+            }
+
+
+        } else {
+            var newLeft = left - 50;
+            if (newLeft < -5744) { newLeft = -5744; }
+            ele.css('left', newLeft + 'px');
+        }
+        return false;
+    });
+});
+</script>
