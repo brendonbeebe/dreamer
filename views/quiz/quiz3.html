@@ -3,39 +3,44 @@
     <h1>Quiz for Lesson 3</h1>
             <button class="btn green" ng-click="submit(3)">Submit Quiz 3</button>
     </div>
+                    <span class="required" >{{error}}</span>
+
     <div class="clear">
     </div>
     <form name="quiz">
-        <span class="required" >{{error}}</span>
         <div class="questions">
             <div class="quiz-question">
-            <p>1. Here is a question about the course above</p>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">Answer</label>
+            <p>1. What are the lean startup key principles?</p>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">Business model canvas, customer development, agile development</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Business plan, stealth mode development, waterfall development</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Business success, healthy living, buying product</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">None of the above</label>
             </div>
             <div class="quiz-question">
-            <p>2. Here is a question about the course above</p>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="1">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="2">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="3">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="4">Answer</label>
+            <p>2. Our simplified version of the business model canvas is about:</p>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="1">Getting rich</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="2">Making value for people</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="3">Becoming famous</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="4">Meeting valuable people</label>
             </div>
             <div class="quiz-question">
-            <p>3. Here is a question about the course above</p>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="1">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="2">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="3">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="4">Answer</label>
+            <p>3. What is the "business model canvas"?</p>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="1">A short version of the business plan</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="2">A 5 years financial forecast for the start-up revenues</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="3">A framework to help summarize your new business idea and assumptions</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="4">A diagram that shows how a business will create value for both the customers and share holders</label>
             </div>
         </div>
         <div class="help-quiz">
+            <h1>Tips</h1>
             <div class="help-info">
+                <span>The lean startup method is all about the idea for the customers</span>
             </div>
             <div class="help-info">
+                <span>Remember what MVP stands for?</span>
             </div>
             <div class="help-info">
+                <span>The business model canvas helps gather you idea and every element that will help contrribute to it's success</span>
             </div>
         </div>
     </form>

@@ -329,7 +329,7 @@ p.non-profit {
   width: auto;
   left: 0;
   background: #eee;
-  position: absolute;
+  position: fixed;
   padding: 20px;
 }
 
@@ -448,15 +448,27 @@ p.non-profit {
     font-size: 24px;
 }
 
+.each-lesson h2{
+  font-weight: 800;
+    color: #ddd;
+    font-size: 140%;
+}
+
 .lesson-video {
+  margin-top: 30px;
   width:62%;
   float:left;
+}
+
+.lesson-video img {
+  width: 100%;
 }
 
 .lesson-content {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
   width:34%;
+  margin-top: 30px;
   margin-left:20px;
   float:right;
 }
@@ -487,8 +499,9 @@ p.non-profit {
 }
 
 .questions {
-  width:50%;
+  width:55%;
   float: left;
+  padding-right: 3%;
 }
 
 .quiz-question {
@@ -498,28 +511,42 @@ p.non-profit {
 }
 
 .quiz-question label {
-  margin: 5px 20px;
+  width: 80%;
+  margin: 5px 0px;
 }
 
 .quiz-question label input {
   margin-right: 20px;
+  margin-bottom: 30px;
+  float:left;
 }
 
 .help-quiz {
   background: #bbb;
   height: auto;  
-  width:50%;
+  width:40%;
   float: right;
+}
+
+.help-quiz h1 {
+  text-align: center;
+  color: #808080;
 }
 
 .help-info {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  height:185px;
+  height:280px;
   padding: 20px 20px 0px 20px;
   color:#fff;
   box-sizing:border-box;
   text-align: center;
+}
+
+.help-info span {
+  top:25%;
+  width:80%;
+  display: inline-block;
 }
 
 .business-plan {

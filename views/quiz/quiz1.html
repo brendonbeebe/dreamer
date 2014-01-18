@@ -3,42 +3,46 @@
     <h1>Quiz for Lesson 1</h1>
             <button class="btn green" ng-click="submit(1)">Submit Quiz 1</button>
     </div>
+            <span class="required" >{{error}}</span>
+
     <div class="clear">
     </div>
     <form name="quiz">
-        <span class="required" >{{error}}</span>
         <div class="questions">
             <div class="quiz-question">
-            <p>1. Here is a question about the course above</p>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">Answer</label>
+            <p>1. What best describes the lean startup principle?</p>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">Lean startup is a principle designed to execute a scalable, repeatable and profitable business model</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Lean startup is a smaller version of what huge big corporations do</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Lean startup is a temporary business started by a man named Bill Gates</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">The Lean startup principle is all of the above answers</label>
             </div>
+            
             <div class="quiz-question">
-            <p>2. Here is a question about the course above</p>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="1">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="2">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="3">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="4">Answer</label>
+            <p>2. What is the first thing you should do for your business idea?</p>
+            <label><input type="radio" name="question3" ng-model="quiz.question2" value="1">Grab a bag of candy, eat it all really fast, and think really hard to get smarter</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question2" value="2">Go validate the idea you have in your head to make sure it is a good idea</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question2" value="3">Hire a really expensive team to build you a website for your business idea</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question2" value="4">Try to find someone really rich to pay you for your awesome idea</label>
             </div>
+
             <div class="quiz-question">
-            <p>3. Here is a question about the course above</p>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="1">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="2">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="3">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="4">Answer</label>
+            <p>3. What is the best way to validate your business idea?</p>
+            <label><input type="radio" name="question2" ng-model="quiz.question3" value="1">Sit in a room and try to guess if your potential customers would like your idea</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question3" value="2">According to the lean startup method you don't need to validate your business idea</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question3" value="3">Get out of the building and go talk to your potential customers</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question3" value="4">Ask your teacher at school to see if your idea is good</label>
             </div>
         </div>
         <div class="help-quiz">
+            <h1>Tips</h1>
             <div class="help-info">
-                a;lskdjfs dflkjsd aflkdj s
+                <span>Remember, the lean starup method is to help your business start properly and last a long time</span>
             </div>
             <div class="help-info">
-                a;lskdjfs dflkjsd aflkdj s
+                <span>When you have an idea, make sure you have one that will work</span>
             </div>
             <div class="help-info">
-                a;lskdjfs dflkjsd aflkdj s
+                <span>If it were me, I would make sure that there are people out there who want what my business offers</span>
             </div>
         </div>
     </form>

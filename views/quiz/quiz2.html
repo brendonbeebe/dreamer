@@ -3,39 +3,44 @@
     <h1>Quiz for Lesson 2</h1>
             <button class="btn green" ng-click="submit(2)">Submit Quiz 2</button>
     </div>
+                <span class="required" >{{error}}</span>
+
     <div class="clear">
     </div>
     <form name="quiz">
-        <span class="required" >{{error}}</span>
         <div class="questions">
             <div class="quiz-question">
-            <p>1. Here is a question about the course above</p>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Answer</label>
-            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">Answer</label>
+            <p>1. What are the lessons learned from observing ideas that fail and succeed?</p>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="1">All answers below</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="2">Business ideas rarely are perfect the first time they are thought up</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="3">Without a validated idea, you have nothing</label>
+            <label><input type="radio" name="question1" ng-model="quiz.question1" value="4">The lean startup method will help your idea</label>
             </div>
             <div class="quiz-question">
-            <p>2. Here is a question about the course above</p>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="1">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="2">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="3">Answer</label>
-            <label><input type="radio" name="question2" ng-model="quiz.question2" value="4">Answer</label>
+            <p>2. You should be able to describe your idea in how many sentences?</p>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="1">1 sentence</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="2">2 sentences</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="3">5 sentences</label>
+            <label><input type="radio" name="question2" ng-model="quiz.question2" value="4">20 sentences</label>
             </div>
             <div class="quiz-question">
-            <p>3. Here is a question about the course above</p>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="1">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="2">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="3">Answer</label>
-            <label><input type="radio" name="question3" ng-model="quiz.question3" value="4">Answer</label>
+            <p>3. What type of idea is the best idea?</p>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="1">An idea that your grandma told you to do because she likes it</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="2">Copy an idea from a big successful business</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="3">An idea that you are passionate about</label>
+            <label><input type="radio" name="question3" ng-model="quiz.question3" value="4">An idea that will make the most money the fastest</label>
             </div>
         </div>
         <div class="help-quiz">
+            <h1>Tips</h1>
             <div class="help-info">
+                <span>Remember, 9 out of 10 businesses fail. A great idea takes time and validation</span>
             </div>
             <div class="help-info">
+                <span>When asking people about your idea, keep it short and sweet</span>
             </div>
             <div class="help-info">
+                <span>The most successful business owners work hard because they enjoy what they do</span>
             </div>
         </div>
     </form>
