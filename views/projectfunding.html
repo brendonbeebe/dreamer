@@ -1,16 +1,31 @@
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-<br/>
-{{plan.summary}}
-{{plan.activities}}
-{{plan.customer}}
-{{plan.value}}
-{{plan.value}}
-        {{user.first_name}}
-        {{user.last_name}}
-        {{user.profile_pic}}
+<div class="funding-page">
+	<h1>{{plan.title}}</h1>
+	<p>by {{user.first_name}} {{user.last_name}}</p>
+</div>
+<div class="container-funding">
+	<div class="funding-left">
+		<h1>The Business</h1>
+		<b>Why {{user.first_name}} wants to start a business:</b>
+		<p>{{plan.summary}}</p>
+		<b>The Business Idea:</b>
+		<p>{{plan.activities}}</p>
+		<b>The Target Customers:</b>
+		<p>{{plan.customer}}</p>
+		<b>The Product Description:</b>
+		<p>{{plan.value}}</p>
+	</div>
+	<div class="funding-right">
+		<span>6</span>
+		<p>Supporters</p>
+		<span>{{plan.raised}}</span>
+		<p>Raised</p>
+		<span>1</span>
+		<p>Days on Young Starter</p>
+		<center>
+		<a class="btn green">Support this Business<p>$1 Minimum</p></a>
+		</center>
+		<hr>
+		<img ng-src="files/{{user.profile_pic}}">
+		<p class="project-user">By {{user.first_name}} {{user.last_name}}</p>
+	</div>
+</div>
