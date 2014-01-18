@@ -14,7 +14,7 @@ myApp.controller(
             $scope.loggedInError = undefined;
             if($cookieStore.get('authdata')){
 
-                $location.path("/lessons");
+                $location.path("/profile");
             }
 
             //Load defaults
@@ -124,6 +124,14 @@ myApp.controller(
         $scope.init = function(){
             $scope.plan = {};
             $scope.plan.suppliesneeded = [];
+
+            $http.get("yii/businessplan/GetBusinessPlan").success(function(response){
+                    $scope.plan = response.data;
+                    if(response.data != undefined){
+                        $location.path("projectpage/"+response.data.id)
+                    }
+                })
+
         }
 
 
@@ -233,6 +241,25 @@ myApp.controller(
 
     }
 );
+myApp.controller(
+    'ProjectsController',
+    function($scope,$location, $cookieStore,Base64,Restangular,userFactory,$http, $state,$stateParams){
+        $scope.init = function(){
+
+            $http.get("yii/businessplan/getall").success(function(response){
+                    $scope.plans = response.data;
+                });
+
+
+        }
+
+
+        $scope.init();
+
+
+
+    }
+);
 
 
 myApp.controller(
@@ -307,7 +334,14 @@ myApp.controller(
             $scope.$watch( function () { return userFactory.user; }, function (data) {
                 $scope.profile = data;
                 $scope.processLessonsComplete();
+
+                $http.get("yii/BusinessPlan/GetBusinessPlan").success(function(respose){
+                    $scope.plan = respose.data;
+                    $scope.everythingCompleted = ($scope.isComplete(1) && $scope.isComplete(2) && $scope.isComplete(3));
+                });
             }, true)
+
+            $scope.alertText = userFactory.getFlash();
         }
         
         $scope.processLessonsComplete = function(){
@@ -318,7 +352,7 @@ myApp.controller(
         }
 
 
-        $scope.init();
+
 
 
         $scope.finishplan = function(){
@@ -348,7 +382,8 @@ myApp.controller(
             var lessons = $scope.lessonsCompleted;
             return $scope.lessonsCompleted[lessonNumber] != null;
         }
-        
+
+
         $scope.isIncomplete = function(lessonNumber) {
             if ( !isLessonsSet() ) { return false; }
             
@@ -368,7 +403,9 @@ myApp.controller(
         var isLessonsSet = function() {
             return ($scope.profile != undefined && $scope.lessonsCompleted != undefined);
         }
-        
+
+
+        $scope.init();
     }
 );
 
@@ -409,9 +446,13 @@ myApp.controller(
                             id:id
                         }
                     }).success(function(){
+
+                            userFactory.setFlash("Congratulations, you finished another quiz!");
+
                             userFactory.getUserInfo(false);
 
-                            $state.transitionTo("lessons");
+                            $state.transitionTo("profile");
+
                         });
                 }
             }

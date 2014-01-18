@@ -19,7 +19,7 @@ class BusinessPlanController extends ERestController
         return array(
 
             array('allow',
-                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan'),
+                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan','GetAll'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -28,14 +28,41 @@ class BusinessPlanController extends ERestController
         );
     }
 
+
+    public function ActionGetAll(){
+        $allProjects = BusinessPlan::model()->findAll("1");
+
+        $returnObject = array();
+        foreach($allProjects as $project){
+            $tempProject = array();
+            $tempProject['picture'] = $project->user->profile_pic;
+            $tempProject['name'] = $project->user->first_name . " " .$project->user->last_name;
+            $tempProject['raised'] = $project->raised;
+            $tempProject['business_name'] = $project->name;
+            $tempProject['id'] = $project->id;
+            $returnObject[] = $tempProject;
+        }
+
+        $this->renderJson(array(
+            'success'=>true,
+            'data'=>$returnObject
+        ));
+    }
+
     public function ActionGetBusinessPlan(){
         $userModel = User::model()->findByPk(Yii::app()->user->id);
         $existingPlan = BusinessPlan::model()->find("user_id = :id",array(":id"=>$userModel->id));
         if(empty($existingPlan)){
-            $existingPlan = new BusinessPlan;
-            $existingPlan->user_id = $userModel->id;
-            $existingPlan->save();
+            $this->renderJson(array(
+                'success'=>true
+            ));
+        } else {
+            $this->renderJson(array(
+                'success'=>true,
+                'data'=>$existingPlan
+            ));
         }
+
     }
 
     public function ActionGetPlan(){

@@ -46,11 +46,11 @@ class BusinessPlan extends CActiveRecord
 		return array(
 			array('value, customer, activities', 'required'),
 			array('user_id', 'numerical', 'integerOnly'=>true),
-			array('summary, type', 'length', 'max'=>50),
-			array('value, customer, activities', 'length', 'max'=>500),
+			array('name', 'length', 'max'=>50),
+			array('value, customer, activities,summary, type', 'length', 'max'=>500),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, raised,user_id, summary, type, value, customer, activities', 'safe', 'on'=>'search'),
+			array('id, name,raised,user_id, summary, type, value, customer, activities', 'safe', 'on'=>'search'),
 		);
 	}
 

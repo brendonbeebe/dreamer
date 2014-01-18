@@ -2,56 +2,18 @@
     <h1>Find a Project to help Fund</h1>
 </div>
 <div class="container">
-    <div class="project">
-        <img src="http://pictures.directnews.co.uk/liveimages/kid%2Brun%2Blemonade%2Bstands%2Bmay%2Bbe%2Bcovered%2Bby%2Bhomeowners%2Binsurance%2Bplans_16000342_800844386_1_0_7037016_300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://www.amiba.net/assets/images/People/louisville-mom-kid-w-buylocal%20stickers-square.gif">
-        <div class="project-hover">
+
+
+    <div class="project" ng-repeat="project in plans"  ng-mouseover="project.show=true" ng-mouseout="project.show =false">
+
+        <a href="#/projectpage/{{project.id}}"><img ng-src="files/{{project.picture}}" />
+        <div class="project-hover" ng-show="project.show">
             <span>
-                <p>Gabriel Hernandez</p>
-                <p><b>$32</b> Raised</p>
-                <p>Tacos Shop</p>
+                <p>{{project.name}}</p>
+                <p><b>${{project.raised}}</b> Raised</p>
+                <p>{{project.business_name}}</p>
             </span>
         </div>
-    </div>
-    <div class="project">
-        <img src="http://1.bp.blogspot.com/-NI0WFzKmd_I/Uld0Lo-WWYI/AAAAAAAAdc4/tgnVdjeY9oU/s400/kid%2Bcovering%2Beyes.jpg">
-    </div>
-    <div class="project">
-        <img src="http://thenypost.files.wordpress.com/2013/08/vada_vasquez1-300x300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://www.thedailysheeple.com/wp-content/uploads/2012/10/moffitt-300x300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://makenoise4kids.org/blog/wp-content/uploads/2013/07/Devan-300x300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://www.safeguardingchildrenea.co.uk/wp-content/uploads/2013/10/NCB-logo-300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://www.whiteflint.org/wpx/wp-content/uploads/2013/12/Becca-site-300x300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://thumbs.dreamstime.com/thumb_279/1213328969CAcsod.jpg">
-    </div>
-    <div class="project">
-        <img src="http://dailysavings.files.wordpress.com/2013/02/reagan-e1363099835367.jpg%3Fw%3D300">
-    </div>
-    <div class="project">
-        <img src="http://thenypost.files.wordpress.com/2013/08/kemar_brooks-300x300.jpg">
-    </div>
-    <div class="project">
-        <img src="http://fingerlakesdailynews.com/shared/inc/client/16/articles/images/2281242806-ShamekaMiles.JPG">
-    </div>
-    <div class="project">
-        <img src="http://www.polyvore.com/cgi/img-thing?.out=jpg&size=l&tid=67183408">
-    </div>
-    <div class="project">
-        <img src="http://i41.photobucket.com/albums/e271/smason01/FamilyDarrDesignsSmallLogo.png">
-    </div>
-    <div class="project">
-        <img src="http://www.usnewsuniversitydirectory.com/images/articleimages/happy%2Bteenager_3085_19915687_1_0_7037950_300.jpg">
+        </a>
     </div>
 </div>

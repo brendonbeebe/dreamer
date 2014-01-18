@@ -99,7 +99,9 @@ var myApp = angular.module('myApp', ['myApp.filters', 'myApp.services', 'myApp.d
                         templateUrl: "views/header.html",
                         controller: "HeaderController"
                     },
+
                     "main_view": {
+                        controller: "ProjectsController",
                         templateUrl: "views/projects.html"
                     }
                 }

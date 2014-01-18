@@ -21,6 +21,19 @@ myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangula
     var applicantLoggedIn = false;
     var redirectTo;
 
+    var flash = "";
+
+    factory.setFlash = function(newf){
+        flash = newf;
+    }
+
+    factory.getFlash = function(){
+        var temp = flash;
+        flash = "";
+        return temp;
+    }
+
+
     factory.user = {
     }
 
@@ -99,7 +112,7 @@ myApp.factory('userFactory',function(Base64,$http,$cookieStore,$state,Restangula
 
 
                     if(redirect == true){
-                        $state.transitionTo('lessons');
+                        $state.transitionTo('profile');
                     }
 
 

@@ -21,11 +21,23 @@
             <button class="profile-lesson-tile" ng-disabled="!isCurrent(3)" ng-class='{current: isCurrent(3), complete: isComplete(3), incomplete: isIncomplete(3)}' ng-click="navigate('lessons.third')">
                 <span>3</span>
             </button>
+
+
+            <a href="#/projectpage/{{plan.id}}" ng-show="plan.id != undefined">Goto My Project</a>
+            <a href="#/businessplan" ng-show="everythingCompleted && plan.id == undefined">Create Funding Page</a>
+
+
         </div>
         <div class="clear">
         </div>
     </div>
 </div>
+
+
+        {{alertText}}
+
+
+
 <div class="container edit-info">
     <header class="line line-small grey" style="margin-bottom: 20px;">
         Information
