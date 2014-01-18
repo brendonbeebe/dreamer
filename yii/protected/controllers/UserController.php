@@ -46,86 +46,7 @@ class UserController extends ERestController
 
 
 
-    public function actionSubscriptionDetails(){
-        $userModel = User::model()->find("id = :id",array(":id"=>Yii::app()->user->id));
-        $subscriptions = $userModel->organizationRelation->subscriptionOrganization;
 
-        $returnObject = array();
-        foreach($subscriptions as $subscription){
-            if($subscription->sub_id== 1){
-                $returnObject['hire']['tier'] = $subscription->planName;
-                $returnObject['hire']['price'] = $subscription->monthlyRate;
-            } elseif($subscription->sub_id == 2){
-                $returnObject['retain']['tier'] = $subscription->planName;
-                $returnObject['retain']['price'] = $subscription->monthlyRate;
-            }
-        }
-
-        $this->renderJson(array(
-            'success'=>true,
-            'data'=>$returnObject
-        ));
-    }
-    public function actionNotificationSeen(){
-        $userModel = User::model()->findByPk(Yii::app()->user->id);
-        $notification_id =  Yii::app()->request->getParam('notification_id');
-        if(empty($userModel)){
-            $message = "User is not logged in.";
-            $this->renderJson(array(
-                'success'=>false,
-                'message'=>$message
-            ));
-            return;
-        }
-
-
-
-        $notification = UserNotify::model()->findByPk($notification_id);
-        $notification->status = 1;
-        $notification->save();
-        $message = "Notification Seen.";
-        $this->renderJson(array(
-            'success'=>true,
-            'message'=>$message
-        ));
-    }
-    public function actionGetMyNotifications(){
-        $userModel = User::model()->findByPk(Yii::app()->user->id);
-        if(empty($userModel)){
-            $message = "User is not logged in.";
-            $this->renderJson(array(
-                'false'=>true,
-                'message'=>$message
-            ));
-            return;
-        }
-
-        $criteria = new CDbCriteria();
-        $criteria->order = "status ASC";
-        $criteria->with = "notify";
-        $criteria->condition = "status = 0 && user_id = ".$userModel->id ;
-        $allModel = UserNotify::model()->findAll($criteria);
-
-        $returnObject = array();
-        foreach($allModel as $model ){
-            $returnObject[] = array(
-                "id" => $model->id,
-                "status" => $model->status,
-                "text" => $model->notify->notification_text,
-                "name"=>$model->notify->name
-            );
-        }
-
-
-        $this->renderJson(array(
-            'success'=>"true",
-            'data'=>array(
-                'totalCount'=>1,
-                'data'=>$returnObject
-            )
-        ));
-
-    }
     public function actionCreateUser(){
         $model = new User;
         $email = $_REQUEST['email'];
@@ -135,46 +56,6 @@ class UserController extends ERestController
         $model->save();
     }
 
-    public function actionNotifyUser(){
-        $user_id = $_REQUEST['id'];
-        $userModel = User::model()->findByPk($user_id);
-        if(!empty($userModel)){
-            $email = $userModel->email;
-            $first_name= $userModel->first_name;
-            $last_name= $userModel->last_name;
-        } else{
-            return;
-        }
-
-        $mandrill = new Mandrill();
-        $template_name = "job-profile-notification";
-        $template_content = array();
-        $template_content[] = array(
-            "name"=>"first_name",
-            "content"=>$first_name . " ".$last_name
-        );
-        $to = array();
-        $to [] = array(
-            "email"=>$email,
-            "name"=>$first_name . " ".$last_name
-        );
-        $message = array(
-            "subject"=>"Request to Participate in a Job Profile",
-            "to"=> $to
-        );
-        $mandrill->messages->sendTemplate($template_name, $template_content, $message);
-
-        $message = "The user was notified by email.";
-        $this->renderJson(array(
-            'success'=>"Success",
-            'message'=>$message
-        ));
-
-        $userModel = User::model()->find("email = :email",array(":email"=>$email));
-        if(!empty($userModel)){
-            $userModel->addNotification(8);
-        }
-    }
 
     public function actionCreateNewUser(){
         $userModel = User::model()->findByPk(Yii::app()->user->id);
@@ -285,12 +166,7 @@ class UserController extends ERestController
         ));
 
     }
-    private function getJobFitAttempt($userId){
 
-        $quizAttempt = QuizAttempt::model()->find("user_id = :user_id AND type = 'application'",array(":user_id"=>$userId));
-
-        return $quizAttempt;
-    }
     public function actionSendForgotPasswordEmail(){
         $email = Yii::app()->request->getParam('email');
         $organization_id = Yii::app()->request->getParam('org_id');
@@ -353,93 +229,6 @@ class UserController extends ERestController
         //$model->save();
     }
 
-    public function actionGetDashboardInfo(){
-        //Get total number of applicants
-        //Get total number of active Jobs
-        //Get total number of applicants who have status hired
-        //Get all applicants who are tier1/2/3
-        $userModel = User::model()->findByPk(Yii::app()->user->id);
-        if(empty($userModel))
-            throw new CHttpException(403,'Must Login.');
-
-        /*
-         * Calculate all the stats required in the dashboard
-         */
-        $hasFinishedJobProfile = false;
-        $jobProfileToFinish = -1; //Should be the id of the profile we want to finish
-        $showDashboard = false;
-        $hasCreatedJob = false;
-        $totalActiveJobs = 0;
-        $totalHired = 0;
-        $totalApplicants = 0;
-        $totalTier1 = $totalTier2 = $totalTier3 = 0;
-        foreach($userModel->organizationRelation->with("applicants")->jobs as $job){
-            $hasCreatedJob = true;
-            //This information is used for the "Getting Started" menu
-            if($job->profile_finished == 'Y')
-                $hasFinishedJobProfile = true;
-            else if($job->active == 'Y' && $job->deleted != 'Y')
-                $jobProfileToFinish = $job->id;
-
-            //Show the dashboard once the organization has created a job
-            $showDashboard = true;
-            if($job->active == 'Y' && $job->deleted != 'Y')
-                $totalActiveJobs++;
-            else
-                continue;
-            /*
-             * Get stats for the applicants
-             */
-            foreach($job->applicants as $applicant){
-                if($applicant->status == 'waiting'){
-                    $totalApplicants++;
-                    $tier = $applicant->applicant->getTier($job->assertive+$job->responsive);
-                    if($tier == 1)
-                        $totalTier1++;
-                    else if($tier == 2)
-                        $totalTier2++;
-                    else if($tier == 3)
-                        $totalTier3++;
-                } else if($applicant->status == 'hired'){
-                    $totalHired++;
-                }
-            }
-        }
-
-        /*
-         * Calculate the progress made
-         */
-
-        $steps = array(
-          "register"=>true,
-          "complete_profile"=>!$userModel->organizationRelation->missingData(),
-          "create_job"=>$hasCreatedJob,
-          "complete_job_profile"=> array(
-              "hasFinishedJobProfile" => $hasFinishedJobProfile,
-              "jobProfileToFinish" =>$jobProfileToFinish
-          )
-        );
-
-
-
-
-
-        $returnObject = array();
-        $returnObject['totalApplicants'] = $totalApplicants;
-        $returnObject['totalActiveJobs'] = $totalActiveJobs;
-        $returnObject['totalHired'] = $totalHired;
-        $returnObject['totalTier1'] = $totalTier1;
-        $returnObject['totalTier2'] = $totalTier2;
-        $returnObject['totalTier3'] = $totalTier3;
-        $returnObject['showDashboard'] = $showDashboard;
-        $returnObject['steps'] = $steps;
-
-        $this->renderJson(array(
-            'success'=>true,
-            'data'=>$returnObject
-        ));
-
-    }
 
     public function actionForgotPassword(){
         $hash = Yii::app()->request->getParam('hash');

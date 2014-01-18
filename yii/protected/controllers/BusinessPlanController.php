@@ -19,7 +19,7 @@ class BusinessPlanController extends ERestController
         return array(
 
             array('allow',
-                'actions'=>array('AddItem'),
+                'actions'=>array('AddItem','GetBusinessPlan','SaveBusinessPlan','GetPlan'),
                 'users'=>array('@'),
             ),
             array('deny',  // deny all users
@@ -28,13 +28,84 @@ class BusinessPlanController extends ERestController
         );
     }
 
+    public function ActionGetBusinessPlan(){
+        $userModel = User::model()->findByPk(Yii::app()->user->id);
+        $existingPlan = BusinessPlan::model()->find("user_id = :id",array(":id"=>$userModel->id));
+        if(empty($existingPlan)){
+            $existingPlan = new BusinessPlan;
+            $existingPlan->user_id = $userModel->id;
+            $existingPlan->save();
+        }
+    }
+
+    public function ActionGetPlan(){
+
+        $planId = Yii::app()->request->getParam('id');
+        $planModel = BusinessPlan::model()->find("id = :id",array(":id"=>$planId));
+        if(!empty($planModel)){
+            $userModel = User::model()->findByPk($planModel->user_id);
+
+            $this->renderJson(array(
+                'success'=>true,
+                'data'=>$planModel,
+                'user'=>$userModel
+            ));
+        }
+    }
+
+    public function ActionSaveBusinessPlan(){
+        $userModel = User::model()->findByPk(Yii::app()->user->id);
+        $post = file_get_contents("php://input");
+        //decode json post input as php array:
+        $data = CJSON::decode($post, true);
+
+
+        $existingPlan = BusinessPlan::model()->find("user_id = :id",array(":id"=>$userModel->id));
+        if(empty($existingPlan)){
+            $existingPlan = new BusinessPlan;
+            $existingPlan->user_id = $userModel->id;
+            $existingPlan->save();
+        }
+
+        $existingPlan->activities = $data['activities'];
+        $existingPlan->customer= $data['customer'];
+        $existingPlan->summary= $data['summary'];
+        $existingPlan->value= $data['value'];
+        $existingPlan->user_id= $userModel->id;
+
+        if($existingPlan->save()){
+            $this->renderJson(array(
+                'success'=>true
+            ));
+        } else {
+            $this->ThrowError($existingPlan->getErrors());
+        }
+
+
+    }
 
     public function ActionAddItem(){
         $planId = Yii::app()->request->getParam('id');
+        $userModel = User::model()->findByPk(Yii::app()->user->id);
+
         $post = file_get_contents("php://input");
 
         //decode json post input as php array:
         $data = CJSON::decode($post, true);
+
+        $existingPlan = BusinessPlan::model()->find("user_id = :id",array(":id"=>$userModel->id));
+        if(empty($existingPlan)){
+            $existingPlan = new BusinessPlan;
+            $existingPlan->user_id = $userModel->id;
+            $existingPlan->save();
+        }
+
+        $model = new BusinessItems;
+        $model->cost = $data['cost'];
+        $model->item= $data['name'];
+        $model->business_id= $existingPlan->id;
+        $model->save();
+
         $this->renderJson(array(
             'success'=>true,
             'data'=>$data
