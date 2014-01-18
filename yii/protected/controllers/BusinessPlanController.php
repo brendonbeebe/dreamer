@@ -18,7 +18,7 @@ class BusinessPlanController extends ERestController
 
         return array(
             array('allow',
-                'actions'=>array('GetAll'),
+                'actions'=>array('GetAll','GetPlan','GetCounter'),
                 'users'=>array('*'),
             ),
             array('allow',
@@ -29,6 +29,14 @@ class BusinessPlanController extends ERestController
                 'users'=>array('*'),
             ),
         );
+    }
+
+    public function ActionGetCounter(){
+        $var_sum = BusinessPlan::model()->findBySql('select SUM(`raised`) as `total` from business_plan', array());
+        $this->renderJson(array(
+            'success'=>true,
+            'data'=>$var_sum->total
+        ));
     }
 
 
